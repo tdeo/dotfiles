@@ -136,6 +136,3 @@ export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 export PATH="$PATH:$HOME/workspace/git-achievements"
 alias git="git-achievements"
 
-
-PERL_MB_OPT="--install_base \"/home/thierry/perl5\""; export PERL_MB_OPT;
-PERL_MM_OPT="INSTALL_BASE=/home/thierry/perl5"; export PERL_MM_OPT;
