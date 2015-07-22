@@ -13,15 +13,15 @@ alias cv='watch -n0,2 cv -q'
 alias git-stats-importer='find /home/thierry/pricematch/ -type d -name .git | xargs -n 1 dirname | sort | grep -v 'platform' | while read line; do echo $line && cd $line && git-stats-importer; done'
 
 function process () { ps -u thierry -o user,pid,%cpu,%mem,time,command | grep $1 | grep -v 'grep' ;}
-function telecom () { cd ~/workspace/Telecom/"$1" ; ls --color=auto;}
-function polytechnique () { cd ~/workspace/X/"$1" ; ls --color=auto;}
-function .. ()  { cd ../"$1" ; ls --color=auto; }
-function cdl () { cd "$1" ; ls --color=auto; }
-function ... () { cd ../../"$1" ; ls --color=auto; }
-function .... () { cd ../../../"$1" ; ls --color=auto; }
-function ..2 () { cd ../../"$1" ; ls --color=auto; }
-function ..3 () { cd ../../../"$1" ; ls --color=auto; }
-function search () { grep -rn "$1" . --color=auto; }
+function telecom () { cd ~/workspace/Telecom/"$1" ; ls;}
+function polytechnique () { cd ~/workspace/X/"$1" ; ls;}
+function .. ()  { cd ../"$1" ; ls; }
+function cdl () { cd "$1" ; ls; }
+function ... () { cd ../../"$1" ; ls; }
+function .... () { cd ../../../"$1" ; ls; }
+function ..2 () { cd ../../"$1" ; ls; }
+function ..3 () { cd ../../../"$1" ; ls; }
+function search () { grep -rn "$1" .; }
 function fname() { find . -iname "*$@*"; }
 parse_git_branch() { git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'; }
 git_tag_prefix() { git tag | tail -n1 | sed -e 's/\([0-9.]\{1,\}\.\)\([0-9]\{1,\}\)$/\1/g'; }
@@ -61,8 +61,8 @@ alias enst='ssh tdeo@ssh.enst.fr'
 alias tiresias='ssh -L 1234:tiresias:8080 tdeo@ssh.enst.fr'
 
 #pricematch
-PM_ROOT="/home/thierry/pricematch"
-function pm () { cd $PM_ROOT/"$1" ; ls --color=auto;}
+PM_ROOT="/Users/tdeo/pricematch/"
+function pm () { cd $PM_ROOT/"$1" ; ls;}
 alias sync_from_prod="time php $PM_ROOT/pricematch-platform/htdocs/index.php tasks sync_from_prod"
 function rspec() { if [ $# -eq 0 ]; then bin/rspec spec/; return; fi; bin/rspec $@; }
 alias full_rspec='bin/rspec -f d -b -p -f h -o /home/thierry/pricematch/test-output.html'

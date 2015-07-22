@@ -91,6 +91,13 @@ xterm*|rxvt*)
     ;;
 esac
 
+case "$TERM" in
+xterm-256color)
+    alias ls='ls -G';;
+*)
+    ;;
+esac
+
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
@@ -124,15 +131,19 @@ if ! shopt -oq posix; then
 fi
 
 #Compose key
-setxkbmap -option compose:menu
+if [ -x setxkbmap ]; then
+    setxkbmap -option compose:menu
+fi
 
 #arcanist completion
-source /opt/phabricator/arcanist/resources/shell/bash-completion
-
-source ~/.rvm/scripts/rvm
-
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+if [ -f /opt/phabricator/arcanist/resources/shell/bash-completion ]; then
+    source /opt/phabricator/arcanist/resources/shell/bash-completion
+fi
+if [ -f ~/workspace/arcanist/resources/shell/bash-completion ]; then
+    source ~/workspace/arcanist/resources/shell/bash-completion
+fi
 
 export PATH="$PATH:$HOME/workspace/git-achievements"
 alias git="git-achievements"
 
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
