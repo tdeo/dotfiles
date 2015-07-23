@@ -8,9 +8,7 @@ alias fucking='sudo'
 alias g++11='g++ -W -Wall -std=c++11 -o myprog '
 alias git?='git branch;git status'
 alias git='LANG=en_US git'
-alias castyle='astyle --style=java --pad-oper --unpad-paren --add-brackets --align-pointer=name --align-reference=name --max-code-length=80 --suffix=none -v'
 alias cv='watch -n0,2 cv -q'
-alias git-stats-importer='find /home/thierry/pricematch/ -type d -name .git | xargs -n 1 dirname | sort | grep -v 'platform' | while read line; do echo $line && cd $line && git-stats-importer; done'
 
 function process () { ps -u thierry -o user,pid,%cpu,%mem,time,command | grep $1 | grep -v 'grep' ;}
 function telecom () { cd ~/workspace/Telecom/"$1" ; ls;}
@@ -65,13 +63,7 @@ PM_ROOT="/Users/tdeo/pricematch/"
 function pm () { cd $PM_ROOT/"$1" ; ls;}
 alias sync_from_prod="time php $PM_ROOT/pricematch-platform/htdocs/index.php tasks sync_from_prod"
 function rspec() { if [ $# -eq 0 ]; then bin/rspec spec/; return; fi; bin/rspec $@; }
-alias full_rspec='bin/rspec -f d -b -p -f h -o /home/thierry/pricematch/test-output.html'
-alias unit-rspec='bin/rspec -f d -b -f h -o /home/thierry/pricematch/test-output.html spec/lib/ spec/models/ spec/mailers/ -p -t ~load_infile -t ~parsing'
-alias rails='bin/rails'
-alias rake='bin/rake'
 alias rubocop='bundle exec rubocop -c $PM_ROOT/devtools/rubocop/rubocop.yml'
-alias spork='bundle exec spork &> /dev/null &'
-alias guard='bundle exec guard'
 alias nose='python algo.py test'
 alias perseus='python $PM_ROOT/devtools/perseus/perseus.py'
 alias algo='python $PM_ROOT/algo/algo.py'
