@@ -17,3 +17,6 @@ export PATH
 if [ -f ~/.git-completion.bash ]; then
   . ~/.git-completion.bash
 fi
+
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8

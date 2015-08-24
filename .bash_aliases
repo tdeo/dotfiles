@@ -8,7 +8,7 @@ alias fucking='sudo'
 alias g++11='g++ -W -Wall -std=c++11 -o myprog '
 alias git?='git branch;git status'
 alias git='LANG=en_US git'
-alias cv='watch -n0,2 cv -q'
+alias cv='watch -n0.02 cv -q'
 
 function process () { ps -u thierry -o user,pid,%cpu,%mem,time,command | grep $1 | grep -v 'grep' ;}
 function telecom () { cd ~/workspace/Telecom/"$1" ; ls;}
@@ -24,6 +24,7 @@ function fname() { find . -iname "*$@*"; }
 parse_git_branch() { git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'; }
 git_tag_prefix() { git tag | tail -n1 | sed -e 's/\([0-9.]\{1,\}\.\)\([0-9]\{1,\}\)$/\1/g'; }
 git_tag_suffix() { git tag | tail -n1 | sed -e 's/\([0-9.]\{1,\}\.\)\([0-9]\{1,\}\)$/\2/g'; }
+function subl_git_modified_files() { git status | gsed -e '/modified/!d' -e 's/\smodified:   //' | xargs subl; }
 
 next_tag() {
   a=$(git_tag_suffix);
@@ -64,12 +65,12 @@ function pm () { cd $PM_ROOT/"$1" ; ls;}
 alias sync_from_prod="time php $PM_ROOT/pricematch-platform/htdocs/index.php tasks sync_from_prod"
 function rspec() { if [ $# -eq 0 ]; then bin/rspec spec/; return; fi; bin/rspec $@; }
 alias rubocop='bundle exec rubocop -c $PM_ROOT/devtools/rubocop/rubocop.yml'
-alias nose='python algo.py test'
+alias nose='PYTHON_ENV=test python algo.py test'
 alias perseus='python $PM_ROOT/devtools/perseus/perseus.py'
 alias algo='python $PM_ROOT/algo/algo.py'
 alias pricematch-db="cd $PM_ROOT/admin && git up && sleep 0.1 && bin/rake db:migrate && bin/rake db:migrate RAILS_ENV=test && cd -"
 alias pricematch-locales="perseus locales synchronize -r $PM_ROOT/www/locales/en.yml"
-alias pricematch-up='find /home/thierry/pricematch/ -type d -name .git | xargs -n 1 dirname | sort | grep -v 'platform' | while read line; do echo $line && cd $line && git up; done'
+alias pricematch-up='find $PM_ROOT -type d -name .git | xargs -n 1 dirname | sort | grep -v 'platform' | while read line; do echo $line && cd $line && git up; done'
 alias pricematch-website="cd $PM_ROOT/www; sleep 0.1; shotgun -p 9293 & grunt watch &"
 
 #logiciels installes manuellement
