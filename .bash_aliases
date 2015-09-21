@@ -72,6 +72,20 @@ alias pricematch-db="cd $PM_ROOT/admin && git up && sleep 0.1 && bin/rake db:mig
 alias pricematch-locales="perseus locales synchronize -r $PM_ROOT/www/locales/en.yml"
 alias pricematch-up='find $PM_ROOT -type d -name .git | xargs -n 1 dirname | sort | grep -v 'platform' | while read line; do echo $line && cd $line && git up; done'
 alias pricematch-website="cd $PM_ROOT/www; sleep 0.1; shotgun -p 9293 & grunt watch &"
+function admin_grep () { grep -nR $1 . --exclude-dir={vendor,coverage,fixtures,\.git,doc,dynamodb}; }
+
+alias caches='for f in `ls /tmp/ | grep sync_from_prod`; do
+if [ -f /tmp/$f/config.json ];
+then
+  echo $f;
+  cat /tmp/$f/config.json;
+  echo "";
+fi
+if [ -f /tmp/$f/test.json ];
+then
+  echo "$f: test";
+fi
+done;'
 
 #logiciels installes manuellement
 alias eclipse='/opt/eclipse/eclipse'
