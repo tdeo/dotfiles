@@ -14,13 +14,6 @@ function process () { ps -u thierry -o user,pid,%cpu,%mem,time,command | grep $1
 function telecom () { cd ~/workspace/Telecom/"$1" ; ls;}
 function polytechnique () { cd ~/workspace/X/"$1" ; ls;}
 function .. ()  { cd ../"$1" ; ls; }
-function cdl () { cd "$1" ; ls; }
-function ... () { cd ../../"$1" ; ls; }
-function .... () { cd ../../../"$1" ; ls; }
-function ..2 () { cd ../../"$1" ; ls; }
-function ..3 () { cd ../../../"$1" ; ls; }
-function search () { grep -rn "$1" .; }
-function fname() { find . -iname "*$@*"; }
 parse_git_branch() { git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'; }
 git_tag_prefix() { git tag | tail -n1 | sed -e 's/\([0-9.]\{1,\}\.\)\([0-9]\{1,\}\)$/\1/g'; }
 git_tag_suffix() { git tag | tail -n1 | sed -e 's/\([0-9.]\{1,\}\.\)\([0-9]\{1,\}\)$/\2/g'; }
@@ -59,6 +52,8 @@ function merge() {
 alias enst='ssh tdeo@ssh.enst.fr'
 alias tiresias='ssh -L 1234:tiresias:8080 tdeo@ssh.enst.fr'
 
+GREP=$(which ggrep &> /dev/null && echo 'ggrep' || echo 'grep')
+
 #pricematch
 PM_ROOT="$HOME/pricematch/"
 alias v="cd $PM_ROOT/devtools/vagrant"
@@ -71,8 +66,8 @@ alias nose='PYTHON_ENV=test python algo.py test'
 alias perseus='python $PM_ROOT/devtools/perseus/perseus.py'
 alias pricematch-db="cd $PM_ROOT/admin && git up && sleep 0.1 && bin/rake db:migrate && bin/rake db:migrate RAILS_ENV=test && cd -"
 alias pricematch-up='find $PM_ROOT -type d -name .git | xargs -n 1 dirname | sort | grep -v 'platform' | while read line; do echo $line && cd $line && git up; done'
-function admin_grep () { ggrep -nR $1 . --exclude-dir={vendor,coverage,fixtures,\.git,doc,dynamodb,public,log} --color=auto; }
-function algo_grep () { ggrep -nR $1 . --exclude=*.pyc --color=auto; }
+function admin_grep () { $GREP -nR $1 . --exclude-dir={vendor,coverage,fixtures,\.git,doc,dynamodb,public,log} --color=auto; }
+function algo_grep () { $GREP -nR $1 . --exclude=*.pyc --color=auto; }
 function ssh-worker () { ssh ubuntu@172.30.3."$1" -p26 -i $HOME/.ssh/deploy3.pem; }
 alias caches='for f in `ls /tmp/ | grep sync_from_prod`; do
 if [ -f /tmp/$f/config.json ];
