@@ -6,8 +6,10 @@ PHP_AUTOCONF="/usr/local/bin/autoconf"
 if [ -f ~/.profile ]; then . ~/.profile; fi
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-  . $(brew --prefix)/etc/bash_completion
+BREW_PREFIX=$(which brew &> /dev/null && brew --prefix || echo '')
+
+if [ -f $BREW_PREFIX/etc/bash_completion ]; then
+  . $BREW_PREFIX/etc/bash_completion
 fi
 # Setting PATH for Python 2.7
 # The orginal version is saved in .bash_profile.pysave
@@ -20,3 +22,6 @@ fi
 
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
+export PATH=$PATH:/Users/tdeo/Library/Android/sdk/platform-tools
+
+[[ -s $BREW_PREFIX/etc/profile.d/autojump.sh ]] && . $BREW_PREFIX/etc/profile.d/autojump.sh

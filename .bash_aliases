@@ -8,7 +8,7 @@ alias fucking='sudo'
 alias g++11='g++ -W -Wall -std=c++11 -o myprog '
 alias git?='git branch;git status'
 alias git='LANG=en_US git'
-alias cv='watch -n0.02 cv -q'
+alias cv='if `which cv`; then watch -n0.02 cv -q; fi; if `which progress`; then watch -n0.02 progress -q; fi'
 
 function process () { ps -u thierry -o user,pid,%cpu,%mem,time,command | grep $1 | grep -v 'grep' ;}
 function telecom () { cd ~/workspace/Telecom/"$1" ; ls;}
@@ -60,20 +60,20 @@ alias enst='ssh tdeo@ssh.enst.fr'
 alias tiresias='ssh -L 1234:tiresias:8080 tdeo@ssh.enst.fr'
 
 #pricematch
-PM_ROOT="/Users/tdeo/pricematch/"
+PM_ROOT="$HOME/pricematch/"
+alias v="cd $PM_ROOT/devtools/vagrant"
 function pm () { cd $PM_ROOT/"$1" ; ls;}
 alias sync_from_prod="time php $PM_ROOT/pricematch-platform/htdocs/index.php tasks sync_from_prod"
 function rspec() { if [ $# -eq 0 ]; then bin/rspec spec/; return; fi; bin/rspec $@; }
+alias admin_bundle='pkill -9 -f spring; rm bin/*; bundle install --binstubs && bundle clean && gem install git-up && rm bin/rails bin/rake && bundle exec rake rails:update:bin && bin/spring binstub --all'
 alias rubocop='bundle exec rubocop -c $PM_ROOT/devtools/rubocop/rubocop.yml'
 alias nose='PYTHON_ENV=test python algo.py test'
 alias perseus='python $PM_ROOT/devtools/perseus/perseus.py'
-alias algo='python $PM_ROOT/algo/algo.py'
 alias pricematch-db="cd $PM_ROOT/admin && git up && sleep 0.1 && bin/rake db:migrate && bin/rake db:migrate RAILS_ENV=test && cd -"
-alias pricematch-locales="perseus locales synchronize -r $PM_ROOT/www/locales/en.yml"
 alias pricematch-up='find $PM_ROOT -type d -name .git | xargs -n 1 dirname | sort | grep -v 'platform' | while read line; do echo $line && cd $line && git up; done'
-alias pricematch-website="cd $PM_ROOT/www; sleep 0.1; shotgun -p 9293 & grunt watch &"
-function admin_grep () { grep -nR $1 . --exclude-dir={vendor,coverage,fixtures,\.git,doc,dynamodb}; }
-
+function admin_grep () { ggrep -nR $1 . --exclude-dir={vendor,coverage,fixtures,\.git,doc,dynamodb,public,log} --color=auto; }
+function algo_grep () { ggrep -nR $1 . --exclude=*.pyc --color=auto; }
+function ssh-worker () { ssh ubuntu@172.30.3."$1" -p26 -i $HOME/.ssh/deploy3.pem; }
 alias caches='for f in `ls /tmp/ | grep sync_from_prod`; do
 if [ -f /tmp/$f/config.json ];
 then

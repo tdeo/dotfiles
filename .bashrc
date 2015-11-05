@@ -111,7 +111,7 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # some more ls aliases
-alias ll='ls -alF'
+alias ll='ls -alhF'
 alias la='ls -A'
 alias l='ls -CF'
 
@@ -143,7 +143,9 @@ if [ -f ~/workspace/arcanist/resources/shell/bash-completion ]; then
     source ~/workspace/arcanist/resources/shell/bash-completion
 fi
 
-export PATH="$PATH:$HOME/workspace/git-achievements"
-alias git="git-achievements"
+if [ -d $HOME/workspace/git-achievements ]; then
+    export PATH="$PATH:$HOME/workspace/git-achievements"
+    alias git="git-achievements"
+fi
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
