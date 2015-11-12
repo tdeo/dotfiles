@@ -33,6 +33,13 @@ _....() {
 complete -F _.... ....
 complete -F _.... ..3
 
+_v() {
+  local cur opts
+  cur="${COMP_WORDS[COMP_CWORD]}"
+  opts="ssh up provision halt destroy reload"
+  COMPREPLY=($(compgen -W "${opts}" -- ${cur}))
+}
+complete -F _v v
 
 _telecom() {
 	local cur opts

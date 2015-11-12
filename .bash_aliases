@@ -56,7 +56,12 @@ GREP=$(which ggrep &> /dev/null && echo 'ggrep' || echo 'grep')
 
 #pricematch
 PM_ROOT="$HOME/pricematch/"
-alias v="cd $PM_ROOT/devtools/vagrant"
+function v () {
+  cd $PM_ROOT/devtools/vagrant;
+  if [ $# == 1 ]; then
+    vagrant $1;
+  fi;
+}
 function pm () { cd $PM_ROOT/"$1" ; ls;}
 alias sync_from_prod="time php $PM_ROOT/pricematch-platform/htdocs/index.php tasks sync_from_prod"
 function rspec() { if [ $# -eq 0 ]; then bin/rspec spec/; return; fi; bin/rspec $@; }
