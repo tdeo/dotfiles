@@ -1,22 +1,21 @@
-alias stiq='echo "binet de teubis"'
-alias BôBar='echo "Mythe, mec !"'
+GREP=$(which ggrep &> /dev/null && echo 'ggrep' || echo 'grep')
+SED=$(which gsed &> /dev/null && echo 'gsed' || echo 'sed')
 
 #Raccourcis
 alias TDB='cd /home/thierry/workspace/TDB'
 alias nano='nano -c'
-alias fucking='sudo'
 alias g++11='g++ -W -Wall -std=c++11 -o myprog '
 alias git?='git branch;git status'
 alias git='LANG=en_US git'
 alias cv='if `which cv`; then watch -n0.02 cv -q; fi; if `which progress`; then watch -n0.02 progress -q; fi'
 
-function process () { ps -u thierry -o user,pid,%cpu,%mem,time,command | grep $1 | grep -v 'grep' ;}
+function process () { ps -u thierry -o user,pid,%cpu,%mem,time,command | $GREP $1 | $GREP -v 'grep' ;}
 function telecom () { cd ~/workspace/Telecom/"$1" ; ls;}
 function polytechnique () { cd ~/workspace/X/"$1" ; ls;}
 function .. ()  { cd ../"$1" ; ls; }
 
-modified_files() { git status | gsed -e '/modified/!d' -e 's/\smodified:   //'; }
-function rspec_modified_files() { modified_files | grep "^spec/" | grep -v "/factories/" | xargs bin/rspec; }
+modified_files() { git status | $SED -e '/modified/!d' -e 's/\smodified:   //'; }
+function rspec_modified_files() { modified_files | $GREP "^spec/" | $GREP -v "/factories/" | xargs bin/rspec; }
 function subl_modified_files() { modified_files | xargs subl; }
 
 function push() { if [ $# -ne 1 ]; then echo "push <branch>"; return; fi; git up; git checkout $1; git push origin $1; }
@@ -58,8 +57,6 @@ alias reload-wifi='networksetup -setairportpower airport off; echo "sleep 5" ; s
 alias enst='ssh tdeo@ssh.enst.fr'
 alias tiresias='ssh -L 1234:tiresias:8080 tdeo@ssh.enst.fr'
 
-GREP=$(which ggrep &> /dev/null && echo 'ggrep' || echo 'grep')
-
 #pricematch
 PM_ROOT="$HOME/pricematch/"
 function v () {
@@ -82,7 +79,7 @@ alias pricematch-up='find $PM_ROOT -type d -name .git | xargs -n 1 dirname | sor
 function admin_grep () { $GREP -nR $1 . --exclude-dir={vendor,coverage,fixtures,\.git,doc,dynamodb,public,log} --color=auto; }
 function algo_grep () { $GREP -nR $1 . --exclude=*.pyc --color=auto; }
 function ssh-worker () { ssh ubuntu@172.30.3."$1" -p26 -i $HOME/.ssh/deploy3.pem; }
-alias caches='for f in `ls /tmp/ | grep sync_from_prod`; do
+alias caches='for f in `ls /tmp/ | $GREP sync_from_prod`; do
 if [ -f /tmp/$f/config.json ];
 then
   echo $f;
