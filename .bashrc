@@ -135,12 +135,8 @@ if [ -x setxkbmap ]; then
     setxkbmap -option compose:menu
 fi
 
-#arcanist completion
-if [ -f /opt/phabricator/arcanist/resources/shell/bash-completion ]; then
-    source /opt/phabricator/arcanist/resources/shell/bash-completion
-fi
-if [ -f ~/workspace/arcanist/resources/shell/bash-completion ]; then
-    source ~/workspace/arcanist/resources/shell/bash-completion
+if [ -f `brew --prefix`/etc/bash_completion ]; then
+    . `brew --prefix`/etc/bash_completion
 fi
 
 if [ -d $HOME/workspace/git-achievements ]; then
