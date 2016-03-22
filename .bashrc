@@ -135,7 +135,7 @@ if [ -x setxkbmap ]; then
     setxkbmap -option compose:menu
 fi
 
-if [ -f `brew --prefix`/etc/bash_completion ]; then
+if [ -x brew ] && [ -f `brew --prefix`/etc/bash_completion ]; then
     . `brew --prefix`/etc/bash_completion
 fi
 

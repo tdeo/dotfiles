@@ -61,11 +61,7 @@ alias tiresias='ssh -L 1234:tiresias:8080 tdeo@ssh.enst.fr'
 PM_ROOT="$HOME/pricematch/"
 function v () {
   cd $PM_ROOT/devtools/vagrant;
-  if [ $# == 1 ]; then
-    vagrant $1;
-  else
-    echo "use vagrant!";
-  fi;
+  vagrant $@;
 }
 function pm () { cd $PM_ROOT/"$1" ; ls;}
 alias sync_from_prod="time php $PM_ROOT/pricematch-platform/htdocs/index.php tasks sync_from_prod"
@@ -76,7 +72,7 @@ alias nose='PYTHON_ENV=test python algo.py test'
 alias perseus='python $PM_ROOT/devtools/perseus/perseus.py'
 alias pricematch-db="cd $PM_ROOT/admin && git up && sleep 0.1 && bin/rake db:migrate && bin/rake db:migrate RAILS_ENV=test && cd -"
 alias pricematch-up='find $PM_ROOT -type d -name .git | xargs -n 1 dirname | sort | grep -v 'platform' | while read line; do echo $line && cd $line && git up; done'
-function admin_grep () { $GREP -nR $1 . --exclude-dir={vendor,coverage,fixtures,\.git,doc,dynamodb,public,log} --color=auto; }
+function admin_grep () { $GREP -nR $1 . --exclude-dir={vendor,coverage,fixtures,\.git,doc,dynamodb,public,log,migrate} --color=auto; }
 function algo_grep () { $GREP -nR $1 . --exclude=*.pyc --color=auto; }
 function ssh-worker () { ssh ubuntu@172.30.3."$1" -p26 -i $HOME/.ssh/deploy3.pem; }
 alias caches='for f in `ls /tmp/ | $GREP sync_from_prod`; do
