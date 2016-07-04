@@ -21,8 +21,8 @@ function subl_modified_files() { modified_files | xargs subl; }
 function push() { if [ $# -ne 1 ]; then echo "push <branch>"; return; fi; git up; git checkout $1; git push origin $1; }
 
 parse_git_branch() { git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'; }
-git_tag_prefix() { git tag | tail -n1 | sed -e 's/\([0-9.]\{1,\}\.\)\([0-9]\{1,\}\)$/\1/g'; }
-git_tag_suffix() { git tag | tail -n1 | sed -e 's/\([0-9.]\{1,\}\.\)\([0-9]\{1,\}\)$/\2/g'; }
+git_tag_prefix() { git tag | grep "^[0-9]\+\(\.[0-9]\+\)*$" | tail -n1 | sed -e 's/\([0-9.]\{1,\}\.\)\([0-9]\{1,\}\)$/\1/g'; }
+git_tag_suffix() { git tag | grep "^[0-9]\+\(\.[0-9]\+\)*$" | tail -n1 | sed -e 's/\([0-9.]\{1,\}\.\)\([0-9]\{1,\}\)$/\2/g'; }
 next_tag() {
   a=$(git_tag_suffix);
   version=$((a+1));
@@ -72,8 +72,8 @@ alias nose='PYTHON_ENV=test python algo.py test'
 alias perseus='python $PM_ROOT/devtools/perseus/perseus.py'
 alias pricematch-db="cd $PM_ROOT/admin && git up && sleep 0.1 && bin/rake db:migrate && bin/rake db:migrate RAILS_ENV=test && cd -"
 alias pricematch-up='find $PM_ROOT -type d -name .git | xargs -n 1 dirname | sort | grep -v 'platform' | while read line; do echo $line && cd $line && git up; done'
-function admin_grep () { $GREP -nR $1 . --exclude-dir={vendor,coverage,fixtures,\.git,doc,dynamodb,public,log,migrate} --color=auto; }
-function algo_grep () { $GREP -nR $1 . --exclude=*.pyc --color=auto; }
+function admin_grep () { $GREP -nR "$*" . --exclude-dir={vendor,coverage,fixtures,\.git,doc,dynamodb,public,log,migrate} --exclude="*.sql" --color=auto; }
+function algo_grep () { $GREP -nR "$*" . --exclude=*.pyc --exclude-dir={notebooks,\.git} --color=auto; }
 function ssh-worker () { ssh ubuntu@172.30.3."$1" -p26 -i $HOME/.ssh/deploy3.pem; }
 alias caches='for f in `ls /tmp/ | $GREP sync_from_prod`; do
 if [ -f /tmp/$f/config.json ];
