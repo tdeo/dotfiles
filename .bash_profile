@@ -4,7 +4,6 @@ if [ -f ~/.bash_completion ]; then . ~/.bash_completion; fi
 export PATH="/usr/local/sbin:$PATH"
 PHP_AUTOCONF="/usr/local/bin/autoconf"
 if [ -f ~/.profile ]; then . ~/.profile; fi
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
 BREW_PREFIX=$(which brew &> /dev/null && brew --prefix || echo '')
 
@@ -25,3 +24,9 @@ export LANG=en_US.UTF-8
 export PATH=$PATH:/Users/tdeo/Library/Android/sdk/platform-tools
 
 [[ -s $BREW_PREFIX/etc/profile.d/autojump.sh ]] && . $BREW_PREFIX/etc/profile.d/autojump.sh
+
+if [ -f ~/.direnvrc ]; then
+  . ~/.direnvrc
+fi
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
