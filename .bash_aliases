@@ -51,6 +51,24 @@ function merge() {
   git checkout $branch;
 }
 
+function booking_proxy () {
+  if [ $# -lt 1 ] || [ $1 == 'up' ]; then
+    export http_proxy='http://webproxy.ams4.corp.booking.com:3128/'
+    export HTTP_PROXY='http://webproxy.ams4.corp.booking.com:3128/'
+    export https_proxy='http://webproxy.ams4.corp.booking.com:3128/'
+    export HTTPS_PROXY='http://webproxy.ams4.corp.booking.com:3128/'
+    export RSYNC_PROXY='http://webproxy.ams4.corp.booking.com:3128/'
+  elif [ $1 == 'down' ]; then
+    unset http_proxy
+    unset HTTP_PROXY
+    unset https_proxy
+    unset HTTPS_PROXY
+    unset RSYNC_PROXY
+  else
+    echo "usage: booking_proxy [up|down]"
+  fi
+}
+
 alias reload-wifi='networksetup -setairportpower airport off; echo "sleep 5" ; sleep 5 ; networksetup -setairportpower airport on'
 
 #Connexions ssh
