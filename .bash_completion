@@ -7,6 +7,14 @@ _pricematch() {
 complete -F _pricematch pricematch
 complete -F _pricematch pm
 
+_booking_proxy() {
+  local cur opts
+  cur="${COMP_WORDS[COMP_CWORD]}"
+  opts="up down"
+  COMPREPLY=($(compgen -W "${opts}" -- ${cur}))
+}
+complete -F _booking_proxy booking_proxy
+
 _..() {
 	local cur opts
 	cur="${COMP_WORDS[COMP_CWORD]}"

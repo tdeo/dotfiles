@@ -51,23 +51,52 @@ function merge() {
   git checkout $branch;
 }
 
-function booking_proxy () {
+function booking_proxy() {
   if [ $# -lt 1 ] || [ $1 == 'up' ]; then
     export http_proxy='http://webproxy.ams4.corp.booking.com:3128/'
-    export HTTP_PROXY='http://webproxy.ams4.corp.booking.com:3128/'
-    export https_proxy='http://webproxy.ams4.corp.booking.com:3128/'
-    export HTTPS_PROXY='http://webproxy.ams4.corp.booking.com:3128/'
-    export RSYNC_PROXY='http://webproxy.ams4.corp.booking.com:3128/'
+    export HTTP_PROXY=$http_proxy
+    export https_proxy=$http_proxy
+    export HTTPS_PROXY=$http_proxy
+    export RSYNC_PROXY=$http_proxy
+    export VAGRANT_HTTP_PROXY=$http_proxy
+    export VAGRANT_HTTPS_PROXY=$http_proxy
+    export VAGRANT_FTP_PROXY=$http_proxy
+    export no_proxy='localhost,*.local,169.254.0.0/16,10.10.10.253'
+    export NO_PROXY=$no_proxy
+    export VAGRANT_NO_PROXY=$no_proxy
   elif [ $1 == 'down' ]; then
     unset http_proxy
     unset HTTP_PROXY
     unset https_proxy
     unset HTTPS_PROXY
     unset RSYNC_PROXY
+    unset VAGRANT_HTTP_PROXY
+    unset VAGRANT_HTTPS_PROXY
+    unset VAGRANT_FTP_PROXY
+    unset no_proxy
+    unset NO_PROXY
+    unset VAGRANT_NO_PROXY
   else
     echo "usage: booking_proxy [up|down]"
   fi
 }
+
+function wifi() {
+  if [ -f /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport ]; then
+    /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -I | awk -F': ' '/ SSID/ {print $2}';
+  else
+    echo 'not_booking_proxy';
+  fi
+}
+
+if [ $(wifi) = "BK-DEV" ]; then
+  if [ $(printenv http_proxy || echo 'not_booking_proxy') != 'http://webproxy.ams4.corp.booking.com:3128/' ]; then
+    echo "Setted up BK-DEV proxy"
+  fi;
+  booking_proxy up;
+elif [ $USER != 'vagrant' ]; then
+  booking_proxy down;
+fi
 
 alias reload-wifi='networksetup -setairportpower airport off; echo "sleep 5" ; sleep 5 ; networksetup -setairportpower airport on'
 
