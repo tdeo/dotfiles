@@ -105,9 +105,14 @@ alias enst='ssh tdeo@ssh.enst.fr'
 alias tiresias='ssh -L 1234:tiresias:8080 tdeo@ssh.enst.fr'
 
 #pricematch
-PM_ROOT="$HOME/pricematch/"
+PM_ROOT="$HOME/pricematch"
+
+if [ -d $HOME/vagrant/pricematch ]; then
+  PM_ROOT="$HOME/vagrant/pricematch"
+fi
+
 function v () {
-  cd $PM_ROOT/devtools/vagrant;
+  cd $HOME/pricematch/devtools/vagrant;
   vagrant $@;
 }
 function pm () { cd $PM_ROOT/"$1" ; ls;}
