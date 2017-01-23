@@ -76,10 +76,25 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
-git_branch() { git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'; }
+git_branch() { git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'; }
+git_sha() { git rev-parse --short HEAD 2> /dev/null; }
 
 if [ "$color_prompt" = yes ]; then
-    PS1="${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u\[\033[0;32m\]@\[\033[01;32m\]\h\[\033[01;00m\]:\[\033[01;34m\]\W\[\033[01;00m\]\[\033[32m\]\$(git_branch) \[\e[0;36m\]\t \[\e[0;31m\]\$\[\033[00m\] "
+    PS1="${debian_chroot:+($debian_chroot)}\
+\[\e[01;32m\]\u\
+\[\e[0;32m\]@\
+\[\e[01;32m\]\h\
+\[\e[01;00m\]:\
+\[\e[01;34m\]\W\
+\[\e[01;00m\]\
+\[\e[0;31m\] (\
+\[\e[00;32m\]\$(git_branch)\
+\[\e[0;31m\]@\
+\[\e[00;32m\]\$(git_sha)\
+\[\e[0;31m\]) \
+\[\e[0;36m\]\t \
+\[\e[0;31m\]\$\
+\[\e[00m\] "
     # PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
