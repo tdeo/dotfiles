@@ -89,7 +89,7 @@ function wifi() {
   fi
 }
 
-if [ $(wifi) = "BK-DEV" ]; then
+if false && [ $(wifi) = "BK-DEV" ]; then
   if [ $(printenv http_proxy || echo 'not_booking_proxy') != 'http://webproxy.ams4.corp.booking.com:3128/' ]; then
     echo "Setted up BK-DEV proxy"
   fi;
