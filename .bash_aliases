@@ -20,6 +20,8 @@ function subl_modified_files() { modified_files | xargs subl; }
 
 function push() { if [ $# -ne 1 ]; then echo "push <branch>"; return; fi; git up; git checkout $1; git push origin $1; }
 
+alias team_commits='git tree | ggrep -P "\((Boris Turchik|Sami Arous|Abigail|Hinrik)" | head -60'
+
 parse_git_branch() { git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'; }
 git_tag_prefix() { git tag | grep "^[0-9]\+\(\.[0-9]\+\)*$" | tail -n1 | sed -e 's/\([0-9.]\{1,\}\.\)\([0-9]\{1,\}\)$/\1/g'; }
 git_tag_suffix() { git tag | grep "^[0-9]\+\(\.[0-9]\+\)*$" | tail -n1 | sed -e 's/\([0-9.]\{1,\}\.\)\([0-9]\{1,\}\)$/\2/g'; }
