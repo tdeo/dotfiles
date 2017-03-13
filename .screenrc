@@ -27,3 +27,9 @@ bindkey -m "^[[6;2~" stuff ^f
 # quit out of vi, the display is redrawn as it was before vi
 # redrew the full screen.
 altscreen on
+
+bindkey "^[[5~" eval "copy" "stuff ^u"
+bindkey "^[[6~" eval "copy" "stuff ^d"
+
+bindkey -m "^[[5~" stuff ^u
+bindkey -m "^[[6~" stuff ^d
