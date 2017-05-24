@@ -22,6 +22,7 @@ function push() { if [ $# -ne 1 ]; then echo "push <branch>"; return; fi; git up
 
 alias team_commits='git tree | ggrep -P "\((Boris Turchik|Sami Arous|Abigail|Hinrik)" | head -60'
 alias perl='perl -Mstrict -Mwarnings -Mv5.18 -MData::Dumper'
+alias av_db='for i in `seq 1 4`; do echo "exit" | mysqly "av_shard_0$i"; done'
 
 parse_git_branch() { git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'; }
 git_tag_prefix() { git tag | grep "^[0-9]\+\(\.[0-9]\+\)*$" | tail -n1 | sed -e 's/\([0-9.]\{1,\}\.\)\([0-9]\{1,\}\)$/\1/g'; }
