@@ -18,7 +18,17 @@ modified_files() { git status | $SED -e '/modified/!d' -e 's/\smodified:   //'; 
 function rspec_modified_files() { modified_files | $GREP "^spec/" | $GREP -v "/factories/" | xargs bin/rspec; }
 function subl_modified_files() { modified_files | xargs subl; }
 
-function push() { if [ $# -ne 1 ]; then echo "push <branch>"; return; fi; git up; git checkout $1; git push origin $1; }
+function push() {
+  if [ $# -ne 1 ]; then
+    echo "push <branch>";
+    return;
+  fi;
+  for i in `seq 1 10`; do
+    git up;
+    git checkout $1;
+    git push origin $1 && break;
+  done;
+}
 
 alias team_commits='git tree | ggrep -P "\((Boris Turchik|Sami Arous|Abigail|Hinrik)" | head -60'
 alias perl='perl -Mstrict -Mwarnings -Mv5.18 -MData::Dumper'
