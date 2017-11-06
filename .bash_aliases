@@ -8,6 +8,7 @@ alias g++11='g++ -W -Wall -std=c++11 -o myprog '
 alias git?='git branch;git status'
 alias git='LANG=en_US git'
 alias cv='if `which cv`; then watch -n0.02 cv -q; fi; if `which progress`; then watch -n0.02 progress -q; fi'
+alias b='bundle exec'
 
 function process () { ps -u thierry -o user,pid,%cpu,%mem,time,command | $GREP $1 | $GREP -v 'grep' ;}
 function telecom () { cd ~/workspace/Telecom/"$1" ; ls;}
