@@ -1,0 +1,3 @@
+# Make Ctrl+W and Ctrl+U not stupid in MySQL client
+bind "^W" ed-delete-prev-word
+bind "^U" vi-kill-line-prev
