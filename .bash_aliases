@@ -66,6 +66,8 @@ function merge() {
   git checkout $branch;
 }
 
+alias otp='watch -n0.1 ~/otp.sh'
+
 function booking_proxy() {
   if [ $# -lt 1 ] || [ $1 == 'up' ]; then
     export http_proxy='http://webproxy.ams4.corp.booking.com:3128/'
