@@ -10,6 +10,8 @@ alias git='LANG=en_US git'
 alias cv='if `which cv`; then watch -n0.02 cv -q; fi; if `which progress`; then watch -n0.02 progress -q; fi'
 alias b='bundle exec'
 
+function digits() { echo $@ | SED "s/[^0-9]//g";  }
+
 function process () { ps -u thierry -o user,pid,%cpu,%mem,time,command | $GREP $1 | $GREP -v 'grep' ;}
 function telecom () { cd ~/workspace/Telecom/"$1" ; ls;}
 function polytechnique () { cd ~/workspace/X/"$1" ; ls;}
