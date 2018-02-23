@@ -1,0 +1,54 @@
+{
+	"bootstrapped": true,
+	"in_process_packages":
+	[
+	],
+	"installed_packages":
+	[
+		"AdvancedNewFile",
+		"All Autocomplete",
+		"ApplySyntax",
+		"Auto Close HTML Tags",
+		"Better CoffeeScript",
+		"Better RSpec",
+		"BracketHighlighter",
+		"Build Next",
+		"CodeSearch",
+		"Colorsublime",
+		"CursorRuler",
+		"DashDoc",
+		"Dockerfile Syntax Highlighting",
+		"ERB Autocomplete",
+		"ERB Snippets",
+		"Git",
+		"GitGutter",
+		"Google Closure Library snippets",
+		"HTML Underscore Syntax",
+		"HTML-CSS-JS Prettify",
+		"HTMLBeautify",
+		"Indent XML",
+		"Markdown HTML Preview",
+		"Markdown Preview",
+		"Mason",
+		"ModernPerl",
+		"Package Control",
+		"PerlSubs",
+		"Pretty JSON",
+		"Pretty YAML",
+		"RubyTest",
+		"Sass",
+		"SFTP",
+		"SqlBeautifier",
+		"SublimeCodeIntel",
+		"SublimeLinter",
+		"SublimeLinter-contrib-perl",
+		"SublimeLinter-rubocop",
+		"SublimeLinter-ruby",
+		"Super Calculator",
+		"TrailingSpaces"
+	],
+	"repositories":
+	[
+		"https://gist.githubusercontent.com/fnando/56393d3900af55bf9e94/raw/repositories.json"
+	]
+}
