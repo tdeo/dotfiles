@@ -159,6 +159,10 @@ then
 fi
 done;'
 
+alias ocdqs='oc login https://containers1.fab4.dqs.booking.com:8443 --username=$USER'
+alias ocprodams4='oc login https://containers1.ams4.prod.booking.com:8443 --username=$USER'
+alias ocprodfab4='oc login https://containers1.fab4.prod.booking.com --username=$USER'
+
 #logiciels installes manuellement
 alias eclipse='/opt/eclipse/eclipse'
 
