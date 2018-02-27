@@ -3,7 +3,7 @@
   excludesfile = /Users/tdeo/.gitignore_global
 [user]
   name = Thierry Deo
-	email = thierry.deo@gmail.com
+  email = thierry.deo@gmail.com
 [tag]
   sort = version:refname
 [alias]
@@ -34,5 +34,5 @@
   path = ~/workspace/.gitconfig
 [includeIf "gitdir:~/pricematch/"]
   path = ~/pricematch/.gitconfig
-[includeIf "gitdir:~/vargrant/pricematch/"]
-  path = ~/vargrant/pricematch/.gitconfig
+[includeIf "gitdir:~/vagrant/pricematch/"]
+  path = ~/vagrant/pricematch/.gitconfig

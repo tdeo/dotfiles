@@ -49,22 +49,6 @@ _v() {
 }
 complete -F _v v
 
-_telecom() {
-	local cur opts
-	cur="${COMP_WORDS[COMP_CWORD]}"
-	opts=$(cd ~/workspace/Telecom ; ls -d */ | sed 's|/./||')
-	COMPREPLY=($(compgen -W "${opts}" -- ${cur}))
-}
-complete -F _telecom telecom
-
-_polytechnique() {
-	local cur opts
-	cur="${COMP_WORDS[COMP_CWORD]}"
-	opts=$(cd ~/workspace/X ; ls -d */ | sed 's|/./||')
-	COMPREPLY=($(compgen -W "${opts}" -- ${cur}))
-}
-complete -F _polytechnique polytechnique
-
 _git_branches() {
 	local cur opts
 	cur="${COMP_WORDS[COMP_CWORD]}"
@@ -73,23 +57,3 @@ _git_branches() {
 }
 complete -F _git_branches push
 complete -F _git_branches merge
-
-_perseus_complete() {
-   COMPREPLY=()
-   local words=( "${COMP_WORDS[@]}" )
-   local word="${COMP_WORDS[COMP_CWORD]}"
-   words=("${words[@]:1}")
-   local completions="$(perseus completer --cmplt=\""${words[*]}"\")"
-   COMPREPLY=( $(compgen -W "$completions" -- "$word") )
-}
-complete -F _perseus_complete perseus
-
-_algo_complete() {
-   COMPREPLY=()
-   local words=( "${COMP_WORDS[@]}" )
-   local word="${COMP_WORDS[COMP_CWORD]}"
-   words=("${words[@]:1}")
-   local completions="$(algo completer --cmplt=\""${words[*]}"\")"
-   COMPREPLY=( $(compgen -W "$completions" -- "$word") )
-}
-complete -F _algo_complete algo
