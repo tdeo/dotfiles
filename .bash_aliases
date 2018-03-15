@@ -33,10 +33,6 @@ function push() {
   done;
 }
 
-alias team_commits='git tree | ggrep -P "\((Boris Turchik|Sami Arous|Abigail|Hinrik)" | head -60'
-alias perl='perl -Mstrict -Mwarnings -Mv5.18 -MData::Dumper'
-alias av_db='for i in `seq 1 4`; do echo "exit" | mysqly "av_shard_0$i"; done'
-
 parse_git_branch() { git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'; }
 git_tag_prefix() { git tag | grep "^[0-9]\+\(\.[0-9]\+\)*$" | tail -n1 | sed -e 's/\([0-9.]\{1,\}\.\)\([0-9]\{1,\}\)$/\1/g'; }
 git_tag_suffix() { git tag | grep "^[0-9]\+\(\.[0-9]\+\)*$" | tail -n1 | sed -e 's/\([0-9.]\{1,\}\.\)\([0-9]\{1,\}\)$/\2/g'; }
@@ -53,6 +49,8 @@ function merge() {
     echo "merge <master> <dev> [auto|<tag>]";
     return;
   fi;
+  (git branch | $GREP "\b$1\b" &> /dev/null);
+  branch_exists=$?;
   git fetch --tags;
   git checkout $1;
   git merge $2;
@@ -66,6 +64,9 @@ function merge() {
     fi;
   fi;
   git checkout $branch;
+  if [ $branch_exists -gt 0 ]; then
+    git branch -D $1;
+  fi;
 }
 
 alias otp='watch -n0.1 ~/otp.sh'
@@ -118,10 +119,6 @@ elif [ $USER != 'vagrant' ]; then
 fi
 
 alias reload-wifi='networksetup -setairportpower airport off; echo "sleep 5" ; sleep 5 ; networksetup -setairportpower airport on'
-
-#Connexions ssh
-alias enst='ssh tdeo@ssh.enst.fr'
-alias tiresias='ssh -L 1234:tiresias:8080 tdeo@ssh.enst.fr'
 
 #pricematch
 PM_ROOT="$HOME/pricematch"

@@ -3,3 +3,4 @@ zde_*.*
 *.sublime-project
 *.sublime-workspace
 .DS_Store
+*.pyc
