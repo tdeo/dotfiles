@@ -1,6 +1,16 @@
-zde.*
-zde_*.*
+# MacOS
+.DS_Store
+
+# SublimeText
 *.sublime-project
 *.sublime-workspace
-.DS_Store
+
+# Ruby
+.byebug_history
+
+# Python
 *.pyc
+
+# Ad-hoc script writing that will be ignored
+zde.*
+zde_*.*

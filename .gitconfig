@@ -4,11 +4,13 @@
 [user]
   name = Thierry Deo
   email = thierry.deo@gmail.com
+  signingkey = 6266C4279CAFEDB7
 [tag]
   sort = version:refname
 [alias]
   lol = log --graph --color --pretty=tformat:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s%x20%x1b[33m(%an)%x1b[0m" --topo-order --decorate  --boundary --branches
   tree = log --color --pretty=tformat:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s%x20%x1b[33m(%an)%x1b[0m"
+  pr = "!f() { git diff `git merge-base $1 HEAD` $1; }; f"
 [push]
   default = simple
 [help]
@@ -34,5 +36,15 @@
   path = ~/workspace/.gitconfig
 [includeIf "gitdir:~/pricematch/"]
   path = ~/pricematch/.gitconfig
+[includeIf "gitdir:~/booking/"]
+  path = ~/booking/.gitconfig
 [includeIf "gitdir:~/vagrant/pricematch/"]
   path = ~/vagrant/pricematch/.gitconfig
+[commit]
+  gpgSign = true
+[http]
+  proxy =
+[pull]
+  rebase = true
+[rebase]
+  autoStash = true
