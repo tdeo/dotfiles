@@ -90,7 +90,7 @@ git_root() {  basename `git rev-parse --show-toplevel`; }
 
 ps1_git_part() {
   local git_part="";
-  if [[ $(git_root &> /dev/null) && $(git rev-parse --show-toplevel) != "$HOME" ]]; then
+  if [[ $(git_root 2> /dev/null) && $(git rev-parse --show-toplevel) != "$HOME" ]]; then
     git_part="$git_part\e[0;31m(";
     if [[ $(basename $(pwd)) != $(git_root) ]]; then
       git_part="$git_part\e[00;32m$(git_root)\e[0;31m @ ";
