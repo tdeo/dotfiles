@@ -32,7 +32,7 @@ next_tag() {
   a=$(git_tag_suffix);
   version=$((a+1));
   tag=$(git_tag_prefix)$version;
-  echo $tag;
+  $ECHO $tag;
 }
 
 function merge() {
