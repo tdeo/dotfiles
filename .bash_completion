@@ -1,24 +1,7 @@
-_pricematch() {
-	local cur opts
-	cur="${COMP_WORDS[COMP_CWORD]}"
-	opts=$(cd $PM_ROOT ; ls -d */ | sed 's|/./||')
-	COMPREPLY=($(compgen -W "${opts}" -- ${cur}))
-}
-complete -F _pricematch pricematch
-complete -F _pricematch pm
-
-_booking_proxy() {
-  local cur opts
-  cur="${COMP_WORDS[COMP_CWORD]}"
-  opts="up down"
-  COMPREPLY=($(compgen -W "${opts}" -- ${cur}))
-}
-complete -F _booking_proxy booking_proxy
-
 _..() {
 	local cur opts
 	cur="${COMP_WORDS[COMP_CWORD]}"
-	opts=$(cd .. ; ls -d */ | sed 's|/./||')
+	opts=$(cd .. ; ls -d */ | $SED 's|/./||')
 	COMPREPLY=($(compgen -W "${opts}" -- ${cur}))
 }
 complete -F _.. ..
@@ -26,28 +9,11 @@ complete -F _.. ..
 _...() {
 	local cur opts
 	cur="${COMP_WORDS[COMP_CWORD]}"
-	opts=$(cd ../.. ; ls -d */ | sed 's|/./||')
+	opts=$(cd ../.. ; ls -d */ | $SED 's|/./||')
 	COMPREPLY=($(compgen -W "${opts}" -- ${cur}))
 }
 complete -F _... ...
 complete -F _... ..2
-
-_....() {
-	local cur opts
-	cur="${COMP_WORDS[COMP_CWORD]}"
-	opts=$(cd ../../.. ; ls -d */ | sed 's|/./||')
-	COMPREPLY=($(compgen -W "${opts}" -- ${cur}))
-}
-complete -F _.... ....
-complete -F _.... ..3
-
-_v() {
-  local cur opts
-  cur="${COMP_WORDS[COMP_CWORD]}"
-  opts="ssh up provision halt destroy reload"
-  COMPREPLY=($(compgen -W "${opts}" -- ${cur}))
-}
-complete -F _v v
 
 _git_branches() {
 	local cur opts

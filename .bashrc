@@ -1,3 +1,7 @@
+GREP=$(which ggrep &> /dev/null && echo 'ggrep' || echo 'grep')
+SED=$(which gsed &> /dev/null && echo 'gsed' || echo 'sed')
+ECHO=$(which gecho &> /dev/null && echo 'gecho' || echo 'echo')
+
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -71,7 +75,7 @@ force_color_prompt=yes
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-  # We have color support; assume it's compliant with Ecma-48
+  # We have color support; assume it\'s compliant with Ecma-48
   # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
   # a case would tend to support setf rather than setaf.)
   color_prompt=yes
@@ -80,8 +84,25 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
-git_branch() { git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'; }
-git_sha() { git rev-parse --short HEAD 2> /dev/null; }
+git_branch() { git rev-parse --abbrev-ref HEAD; }
+git_sha() { git rev-parse --short HEAD; }
+git_root() {  basename `git rev-parse --show-toplevel`; }
+
+ps1_git_part() {
+  local git_part="";
+  if [[ $(git_root) && $(git rev-parse --show-toplevel) != "$HOME" ]]; then
+    git_part="$git_part\e[0;31m(";
+    if [ $(basename $(pwd)) != $(git_root) ]; then
+      git_part="$git_part\e[00;32m$(git_root)\e[0;31m @ ";
+    fi
+    git_part="$git_part\e[00;32m$(git_branch)\
+\e[0;31m @ \
+\e[00;32m$(git_sha)\
+\e[0;31m) \
+\e[00m ";
+  fi
+  $ECHO -e $git_part
+}
 
 if [ "$color_prompt" = yes ]; then
     PS1="${debian_chroot:+($debian_chroot)}\
@@ -89,19 +110,14 @@ if [ "$color_prompt" = yes ]; then
 \[\e[0;32m\]@\
 \[\e[01;32m\]\h\
 \[\e[01;00m\]:\
-\[\e[01;34m\]\W\
-\[\e[01;00m\]\
-\[\e[0;31m\] (\
-\[\e[00;32m\]\$(git_branch)\
-\[\e[0;31m\]@\
-\[\e[00;32m\]\$(git_sha)\
-\[\e[0;31m\]) \
+\[\e[01;34m\]\W \
 \[\e[0;36m\]\t \
-\[\e[0;31m\]\$\
-\[\e[00m\] "
+\[\e[00;32m\]\$(ps1_git_part)\
+\[\e[0;31m\]\$ \
+\[\e[01;00m\]";
     # PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ ';
 fi
 unset color_prompt force_color_prompt
 
@@ -128,7 +144,7 @@ if [ -x /usr/bin/dircolors ]; then
     #alias dir='dir --color=auto'
     #alias vdir='vdir --color=auto'
 
-    alias grep='grep --color=auto'
+    alias grep='$GREP --color=auto'
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
 fi
@@ -137,10 +153,6 @@ fi
 alias ll='ls -alhF'
 alias la='ls -A'
 alias l='ls -CF'
-
-# Add an "alert" alias for long running commands.  Use like so:
-#   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -166,12 +178,6 @@ if [ -d $HOME/workspace/git-achievements ]; then
     export PATH="$PATH:$HOME/workspace/git-achievements"
     alias git="git-achievements"
 fi
-
-PATH="/Users/tdeo/perl5/bin${PATH:+:${PATH}}"; export PATH;
-PERL5LIB="/Users/tdeo/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
-PERL_LOCAL_LIB_ROOT="/Users/tdeo/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
-PERL_MB_OPT="--install_base \"/Users/tdeo/perl5\""; export PERL_MB_OPT;
-PERL_MM_OPT="INSTALL_BASE=/Users/tdeo/perl5"; export PERL_MM_OPT;
 
 EDITOR="subl -w"
 
