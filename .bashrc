@@ -88,22 +88,6 @@ git_branch() { git rev-parse --abbrev-ref HEAD; }
 git_sha() { git rev-parse --short HEAD; }
 git_root() {  basename `git rev-parse --show-toplevel`; }
 
-ps1_git_part() {
-  local git_part="";
-  if [[ $(git_root 2> /dev/null) && $(git rev-parse --show-toplevel) != "$HOME" ]]; then
-    git_part="$git_part\e[0;31m(";
-    if [[ $(basename $(pwd)) != $(git_root) ]]; then
-      git_part="$git_part\e[00;32m$(git_root)\e[0;31m @ ";
-    fi
-    git_part="$git_part\e[00;32m$(git_branch)\
-\e[0;31m @ \
-\e[00;32m$(git_sha)\
-\e[0;31m) \
-\e[00m ";
-  fi
-  $ECHO -e $git_part
-}
-
 if [ "$color_prompt" = yes ]; then
     PS1="${debian_chroot:+($debian_chroot)}\
 \[\e[01;32m\]\u\
@@ -111,8 +95,14 @@ if [ "$color_prompt" = yes ]; then
 \[\e[01;32m\]\h\
 \[\e[01;00m\]:\
 \[\e[01;34m\]\W \
+\[\e[0;31m\](\
+\[\e[00;32m\]\$(git_root)\
+\[\e[0;31m\] @ \
+\[\e[00;32m\]\$(git_branch)\
+\[\e[0;31m\] @ \
+\[\e[00;32m\]\$(git_sha)\
+\[\e[0;31m\]) \
 \[\e[0;36m\]\t \
-\[\e[00;32m\]\$(ps1_git_part)\
 \[\e[0;31m\]\$ \
 \[\e[01;00m\]";
     # PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
@@ -182,8 +172,10 @@ fi
 EDITOR="subl -w"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$HOME/.rvm/bin:$PATH"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
