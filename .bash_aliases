@@ -24,6 +24,8 @@ function push() {
   done;
 }
 
+alias curl='curl -w "\n"'
+
 alias docker-cleanup='docker ps -q | xargs docker kill; docker ps -aq | xargs docker rm; docker images -q --filter dangling=true | xargs docker rmi; docker volume prune -f'
 # GIT automation
 git_tag_prefix() { git tag | $GREP "^[0-9]\+\(\.[0-9]\+\)*$" | tail -n1 | $SED -e 's/\([0-9.]\{1,\}\.\)\([0-9]\{1,\}\)$/\1/g'; }
