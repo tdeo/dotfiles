@@ -86,7 +86,7 @@ fi
 
 git_branch() { git rev-parse --abbrev-ref HEAD; }
 git_sha() { git rev-parse --short HEAD; }
-git_root() {  basename `git rev-parse --show-toplevel`; }
+git_root() {  basename "$(git rev-parse --show-toplevel)"; }
 
 if [ "$color_prompt" = yes ]; then
     PS1="${debian_chroot:+($debian_chroot)}\
