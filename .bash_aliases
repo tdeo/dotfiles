@@ -37,6 +37,16 @@ next_tag() {
   $ECHO $tag;
 }
 
+multiboo() {
+  $ECHO '' > /tmp/boo.out;
+  for kvm in $@; do
+    BOO_KVM=$kvm boo sync >> /tmp/boo.out 2>> /tmp/boo.err < /dev/null &&
+    BOO_KVM=$kvm boo restart >> /tmp/boo.out 2>> /tmp/boo.err < /dev/null &
+  done;
+  gtimeout 45 tail -f /tmp/boo.out;
+  jobs
+}
+
 function merge() {
   branch=$(git_branch);
   if [ $# -lt 2 ]; then
