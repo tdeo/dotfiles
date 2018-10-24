@@ -1,10 +1,9 @@
 [core]
   editor = subl -w
-  excludesfile = /Users/tdeo/.gitignore_global
+  excludesfile = ~/.gitignore_global
 [user]
   name = Thierry Deo
   email = thierry.deo@gmail.com
-  signingkey = 6266C4279CAFEDB7
 [tag]
   sort = version:refname
 [alias]
@@ -32,16 +31,10 @@
   added = yellow
   changed = green
   untracked = cyan
+[include]
+  path = ~/.gitgpgsign
 [includeIf "gitdir:~/workspace/"]
   path = ~/workspace/.gitconfig
-[includeIf "gitdir:~/pricematch/"]
-  path = ~/pricematch/.gitconfig
-[includeIf "gitdir:~/booking/"]
-  path = ~/booking/.gitconfig
-[includeIf "gitdir:~/vagrant/pricematch/"]
-  path = ~/vagrant/pricematch/.gitconfig
-[commit]
-  gpgSign = true
 [http]
   proxy =
 [pull]

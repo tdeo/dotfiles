@@ -10,10 +10,6 @@ BREW_PREFIX=$(which brew &> /dev/null && brew --prefix || echo '')
 if [ -f $BREW_PREFIX/etc/bash_completion ]; then
   . $BREW_PREFIX/etc/bash_completion
 fi
-# Setting PATH for Python 2.7
-# The orginal version is saved in .bash_profile.pysave
-PATH="/Library/Frameworks/Python.framework/Versions/2.7/bin:${PATH}"
-export PATH
 
 if [ -f ~/.git-completion.bash ]; then
   . ~/.git-completion.bash
@@ -29,14 +25,8 @@ if [ -f ~/.direnvrc ]; then
   . ~/.direnvrc
 fi
 
-# Setting PATH for Python 3.5
-# The original version is saved in .bash_profile.pysave
-PATH="/Library/Frameworks/Python.framework/Versions/3.5/bin:${PATH}"
-export PATH
-
-# Setting PATH for Python 3.4
-# The orginal version is saved in .bash_profile.pysave
-PATH="/Library/Frameworks/Python.framework/Versions/3.4/bin:${PATH}"
-export PATH
+export PATH="/home/thierry/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*

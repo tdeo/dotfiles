@@ -84,9 +84,9 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
-git_branch() { git rev-parse --abbrev-ref HEAD; }
-git_sha() { git rev-parse --short HEAD; }
-git_root() {  basename "$(git rev-parse --show-toplevel)"; }
+git_branch() { git rev-parse --abbrev-ref HEAD 2> /dev/null; }
+git_sha() { git rev-parse --short HEAD 2> /dev/null; }
+git_root() {  basename "$(git rev-parse --show-toplevel 2> /dev/null)"; }
 
 if [ "$color_prompt" = yes ]; then
     PS1="${debian_chroot:+($debian_chroot)}\
