@@ -24,6 +24,10 @@ function push() {
   done;
 }
 
+if which xdg-open &> /dev/null; then
+  alias open="xdg-open"
+fi
+
 alias curl='curl -w "\n"'
 
 alias docker-cleanup='docker ps -q | xargs docker kill; docker ps -aq | xargs docker rm; docker images -q --filter dangling=true | xargs docker rmi; docker volume prune -f'
