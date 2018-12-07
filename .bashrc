@@ -93,22 +93,23 @@ git_sha() { git rev-parse --short HEAD 2> /dev/null; }
 git_root() {  basename "$(git rev-parse --show-toplevel 2> /dev/null)"; }
 
 if [ "$color_prompt" = yes ]; then
-    PS1="${debian_chroot:+($debian_chroot)}\
-\[\e[01;32m\]\u\
-\[\e[0;32m\]@\
-\[\e[01;32m\]\h\
-\[\e[01;00m\]:\
-\[\e[01;34m\]\W \
-\[\e[0;31m\](\
-\[\e[00;32m\]\$(git_root)\
-\[\e[0;31m\] @ \
-\[\e[00;32m\]\$(git_branch)\
-\[\e[0;31m\] @ \
-\[\e[00;32m\]\$(git_sha)\
-\[\e[0;31m\]) \
+    PS1="\
+\`if [ \$? = 0 ]; then echo \[\e[32m\]; else echo \[\e[31m\]; fi\`\
+\[\e[1m\]\u\
+\[\e[2m\]@\
+\[\e[22;1m\]\h\
+\[\e[0m\]:\
+\[\e[1;34m\]\W \
+\[\e[0;2;31m\](\
+\[\e[0;32m\]\`git_root\`\
+\[\e[0;2;31m\]@\
+\[\e[0;32m\]\`git_branch\`\
+\[\e[0;2;31m\]@\
+\[\e[0;32m\]\`git_sha\`\
+\[\e[0;2;31m\]) \
 \[\e[0;36m\]\t \
 \[\e[0;31m\]\$ \
-\[\e[01;00m\]";
+\[\e[0m\]";
     # PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ ';

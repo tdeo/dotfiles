@@ -1,5 +1,6 @@
 #Raccourcis
 alias nano='nano -c'
+alias t='true'
 alias g++11='g++ -O3 -W -Wall -std=c++11 -o myprog '
 alias git?='git branch && git status'
 alias git='LANG=en_US git'
@@ -9,6 +10,8 @@ alias otp="watch -n0.1 $HOME/otp.sh"
 
 function .. ()  { cd ../"$1" ; ls; }
 function ... ()  { cd ../../"$1" ; ls; }
+
+alias pubip='dig +short myip.opendns.com @resolver1.opendns.com'
 
 modified_files() { git status | $SED -e '/modified/!d' -e 's/\smodified:   //'; }
 
@@ -27,6 +30,22 @@ function push() {
 if which xdg-open &> /dev/null; then
   alias open="xdg-open"
 fi
+
+alias git_sim_files="git ls-files | \
+  xargs shasum | \
+  sort | \
+  grep -v $(echo -n '' | shasum) | \
+  awk '\
+    (\$1 == p1) { \
+      print p1; \
+      print \"\\t\" p2; \
+      print \"\\t\" \$2; \
+      print \"\" \
+    }
+    { \
+      p1 = \$1; \
+      p2 = \$2 \
+    }'"
 
 alias curl='curl -w "\n"'
 
