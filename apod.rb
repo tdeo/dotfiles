@@ -1,19 +1,25 @@
-#! /usr/bin/env ruby
+#! /usr/bin/ruby
 
-DIR = File.absolute_path('.apod')
+require 'pathname'
+
+DIR = Pathname.new(File.absolute_path(__dir__)).join('.apod').to_s
 URL = 'https://apod.nasa.gov/apod'.freeze
 
 Dir.mkdir(DIR) unless Dir.exists?(DIR)
 
-list = `curl -sSL -XGET #{URL}/archivepix.html 2>/dev/null | head -n200`
+list = `curl -sSL -XGET #{URL}/archivepix.html 2>/dev/null | head -n 1000`.force_encoding('ISO-8859-1').encode('UTF-8')
+
+limit = ARGV[0].to_s =~ /\d+/ ? ARGV[0].to_i : 1
 
 downloaded = 0
 
 list.scan(/(\d{4})\s+([A-Z][a-z]+)\s+(\d+)\s*:\s+\<a\s+href="([^"]+)"/).each_with_index do |m, i|
 
-  break if downloaded == 10
+  break if downloaded >= limit
 
   file = "#{DIR}/#{m[0..2].join('_')}"
+  next if system("[ -f #{file}\.* ]")
+
   page = `curl -sSL -XGET #{URL}/#{m[3]} 2>/dev/null`.force_encoding('ISO-8859-1').encode('UTF-8')
 
   img = page.match(%r{<a\s+href="(image/[^"]+)"})
@@ -38,7 +44,7 @@ list.scan(/(\d{4})\s+([A-Z][a-z]+)\s+(\d+)\s*:\s+\<a\s+href="([^"]+)"/).each_wit
 
   if i == 0
     puts "Setting #{file} as background"
-    `gsettings set org.gnome.desktop.background picture-uri file://#{file}`
+    `cp #{file} /home/thierry/.apod/latest`
   end
 end
 

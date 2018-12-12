@@ -25,8 +25,10 @@ if [ -f ~/.direnvrc ]; then
   . ~/.direnvrc
 fi
 
-export PATH="/home/thierry/.pyenv/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+if which pyenv; then
+  export PATH="/home/thierry/.pyenv/bin:$PATH"
+  eval "$(pyenv init -)"
+  eval "$(pyenv virtualenv-init -)"
+fi
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
