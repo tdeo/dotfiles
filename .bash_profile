@@ -26,7 +26,7 @@ if [ -f ~/.direnvrc ]; then
 fi
 
 export PATH="/home/thierry/.pyenv/bin:$PATH"
-if which pyenv; then
+if which pyenv &> /dev/null; then
   eval "$(pyenv init -)"
   eval "$(pyenv virtualenv-init -)"
 fi
