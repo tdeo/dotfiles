@@ -160,6 +160,8 @@ if ! shopt -oq posix; then
   fi
 fi
 
+bind -x '"\C-k": printf "\ec"';
+
 #Compose key
 if [ -x setxkbmap ]; then
     setxkbmap -option compose:menu
