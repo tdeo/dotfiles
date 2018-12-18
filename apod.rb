@@ -1,9 +1,17 @@
 #! /usr/bin/ruby
 
 require 'pathname'
+require 'logger'
+
+LOGGER = Logger.new('/tmp/apod.log')
 
 DIR = Pathname.new(File.absolute_path(__dir__)).join('.apod').to_s
 URL = 'https://apod.nasa.gov/apod'.freeze
+
+def puts(message)
+  LOGGER.info(message)
+  Kernel.puts message
+end
 
 Dir.mkdir(DIR) unless Dir.exists?(DIR)
 
