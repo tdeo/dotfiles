@@ -1,8 +1,10 @@
 if [ -f ~/.bashrc ]; then . ~/.bashrc; fi
 if [ -f ~/.bash_aliases ]; then . ~/.bash_aliases; fi
 if [ -f ~/.bash_completion ]; then . ~/.bash_completion; fi
+
 export PATH="/usr/local/sbin:$PATH"
 PHP_AUTOCONF="/usr/local/bin/autoconf"
+
 if [ -f ~/.profile ]; then . ~/.profile; fi
 
 BREW_PREFIX=$(which brew &> /dev/null && brew --prefix || echo '')
@@ -25,10 +27,12 @@ if [ -f ~/.direnvrc ]; then
   . ~/.direnvrc
 fi
 
-export PATH="/home/thierry/.pyenv/bin:$PATH"
+export PATH="$HOME/.pyenv/bin:$PATH"
 if which pyenv &> /dev/null; then
   eval "$(pyenv init -)"
-  eval "$(pyenv virtualenv-init -)"
+  # eval "$(pyenv virtualenv-init -)"
 fi
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+if [[ -s "$HOME/.rvm/scripts/rvm" ]]; then
+  source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+fi

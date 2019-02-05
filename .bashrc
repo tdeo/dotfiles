@@ -1,7 +1,3 @@
-GREP=$(which ggrep &> /dev/null && echo 'ggrep' || echo 'grep')
-SED=$(which gsed &> /dev/null && echo 'gsed' || echo 'sed')
-ECHO=$(which gecho &> /dev/null && echo 'gecho' || echo 'echo')
-
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -55,10 +51,6 @@ case "$TERM" in
     xterm-color) color_prompt=yes;;
 esac
 
-if [ -f ~/tilkee/.tilkeerc ]; then
-  . ~/tilkee/.tilkeerc
-fi
-
 # Alias definitions.
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
@@ -88,9 +80,9 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
-git_branch() { git rev-parse --abbrev-ref HEAD 2> /dev/null; }
-git_sha() { git rev-parse --short HEAD 2> /dev/null; }
-git_root() {  basename "$(git rev-parse --show-toplevel 2> /dev/null)"; }
+if [ -f ~/.git_aliases ]; then
+    . ~/.git_aliases
+fi
 
 if [ "$color_prompt" = yes ]; then
     PS1="\
@@ -139,7 +131,7 @@ if [ -x /usr/bin/dircolors ]; then
     #alias dir='dir --color=auto'
     #alias vdir='vdir --color=auto'
 
-    alias grep='$GREP --color=auto'
+    alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
 fi
@@ -171,10 +163,8 @@ if [ -x brew ] && [ -f `brew --prefix`/etc/bash_completion ]; then
     . `brew --prefix`/etc/bash_completion
 fi
 
-if [ -d $HOME/workspace/git-achievements ]; then
-    export PATH="$PATH:$HOME/workspace/git-achievements"
-    alias git="git-achievements"
-fi
+# Use GNU utils form brew on MacOS
+PATH="/usr/local/opt/findutils/libexec/gnubin:/usr/local/opt/coreutils/libexec/gnubin:/usr/local/opt/gnu-sed/libexec/gnubin:/usr/local/opt/grep/libexec/gnubin:$PATH"
 
 EDITOR="subl -w"
 

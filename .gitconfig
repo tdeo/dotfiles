@@ -9,7 +9,7 @@
 [alias]
   lol = log --graph --color --pretty=tformat:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s%x20%x1b[33m(%an)%x1b[0m" --topo-order --decorate  --boundary --branches
   tree = log --color --pretty=tformat:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s%x20%x1b[33m(%an)%x1b[0m"
-  pr = "!f() { git diff `git merge-base $1 HEAD` $1; }; f"
+  pr = "!f() { git symbolic-ref refs/remotes/origin/HEAD | sed 's|^refs/remotes/origin/||' | xargs git merge-base $1 | xargs -I{} git diff {} $1; }; f"
 [push]
   default = simple
 [help]
@@ -36,8 +36,8 @@
   path = ~/.gitgpgsign
 [includeIf "gitdir:~/workspace/"]
   path = ~/workspace/.gitconfig
-[includeIf "gitdir:~/tilkee"]
-  path = ~/tilkee/.gitconfig
+[includeIf "gitdir:~/reecall/"]
+  path = ~/reecall/.gitconfig
 [http]
   proxy =
 [pull]

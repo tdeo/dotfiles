@@ -1,25 +1,15 @@
 _..() {
-	local cur opts
-	cur="${COMP_WORDS[COMP_CWORD]}"
-	opts=$(cd .. ; ls -d */ | $SED 's|/./||')
-	COMPREPLY=($(compgen -W "${opts}" -- ${cur}))
+	local opts
+	opts=$(cd .. ; ls -d */ | sed 's|/./||')
+	COMPREPLY=($(compgen -W "${opts}"))
 }
-complete -F _.. ..
-
-_...() {
-	local cur opts
-	cur="${COMP_WORDS[COMP_CWORD]}"
-	opts=$(cd ../.. ; ls -d */ | $SED 's|/./||')
-	COMPREPLY=($(compgen -W "${opts}" -- ${cur}))
-}
-complete -F _... ...
-complete -F _... ..2
 
 _git_branches() {
-	local cur opts
-	cur="${COMP_WORDS[COMP_CWORD]}"
-	opts=$(git branch)
-	COMPREPLY=($(compgen -W "${opts} auto" -- ${cur}))
+	local opts
+	opts=$(git branch --format "%(refname)" | sed 's|refs/heads/||')
+	COMPREPLY=($(compgen -W "${opts} auto"))
 }
-complete -F _git_branches push
-complete -F _git_branches merge
+
+_git_pr() {
+	_git_checkout
+}

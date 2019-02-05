@@ -1,0 +1,79 @@
+alias git='LANG=en_US git'
+alias git?='git branch && git status'
+
+git_branch() { git rev-parse --abbrev-ref HEAD 2> /dev/null; }
+git_sha() { git rev-parse --short HEAD 2> /dev/null; }
+git_root() {  basename "$(git rev-parse --show-toplevel 2> /dev/null)"; }
+
+git_tag_prefix() {
+  git tag | grep "^[0-9]\+\(\.[0-9]\+\)*$" | tail -n1 | sed -e 's/\([0-9.]\{1,\}\.\)\([0-9]\{1,\}\)$/\1/g'; }
+git_tag_suffix() {
+  git tag | grep "^[0-9]\+\(\.[0-9]\+\)*$" | tail -n1 | sed -e 's/\([0-9.]\{1,\}\.\)\([0-9]\{1,\}\)$/\2/g'; }
+next_tag() {
+  a=$(git_tag_suffix);
+  version=$((a+1));
+  tag=$(git_tag_prefix)$version;
+  echo $tag;
+}
+
+function merge() {
+  branch=$(git_branch);
+  if [ $# -lt 2 ]; then
+    echo "merge <master> <dev> [auto|<tag>]";
+    return;
+  fi;
+  (git branch | grep "\b$1\b" &> /dev/null);
+  branch_exists=$?;
+  git fetch --tags;
+  git checkout $1;
+  git merge $2;
+  git push origin $1;
+  if [ $# -ge 3 ]; then
+    if [ $3 == 'auto' ]; then
+      a=$(next_tag);
+      git tag $a; git push origin $a;
+    else
+      git tag $3; git push origin $3;
+    fi;
+  fi;
+  git checkout $branch;
+  if [ $branch_exists -gt 0 ]; then
+    git branch -D $1;
+  fi;
+}
+complete -F _git_branches merge
+
+modified_files() { git status | sed -e '/modified/!d' -e 's/\smodified:   //'; }
+
+function push() {
+  if [ $# -ne 1 ]; then
+    echo "push <branch>";
+    return;
+  fi;
+  for i in `seq 1 10`; do
+    git up;
+    git checkout $1;
+    git push origin $1 && break;
+  done;
+}
+complete -F _git_branches push
+
+if which xdg-open &> /dev/null; then
+  alias open="xdg-open"
+fi
+
+alias git_sim_files="git ls-files | \
+  xargs shasum | \
+  sort | \
+  grep -v $(echo -n '' | shasum) | \
+  awk '\
+    (\$1 == p1) { \
+      print p1; \
+      print \"\\t\" p2; \
+      print \"\\t\" \$2; \
+      print \"\" \
+    }
+    { \
+      p1 = \$1; \
+      p2 = \$2 \
+    }'"
