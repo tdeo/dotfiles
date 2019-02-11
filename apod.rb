@@ -52,7 +52,7 @@ list.scan(/(\d{4})\s+([A-Z][a-z]+)\s+(\d+)\s*:\s+\<a\s+href="([^"]+)"/).each_wit
 
   if i == 0
     puts "Setting #{file} as background"
-    `cp #{file} /home/thierry/.apod/latest`
+    `cp #{file} #{DIR}/.apod/latest`
   end
 end
 

@@ -62,6 +62,18 @@ if which xdg-open &> /dev/null; then
   alias open="xdg-open"
 fi
 
+function git_dirs() {
+  for d in `ls -d *`; do
+    ([ -d $d ] && [ -d $d/.git ])|| continue
+    cd $d
+    printf '\n******************** %-40s' " $d"
+    git diff-index --quiet HEAD -- && echo "No changes" && cd ../ && continue
+    echo ""
+    git?
+    cd ../
+  done
+}
+
 alias git_sim_files="git ls-files | \
   xargs shasum | \
   sort | \
