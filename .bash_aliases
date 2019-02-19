@@ -17,3 +17,5 @@ alias pubip='dig +short myip.opendns.com @resolver1.opendns.com'
 alias curl='curl -w "\n"'
 
 alias docker-cleanup='docker ps -q | xargs docker kill; docker ps -aq | xargs docker rm; docker images -q --filter dangling=true | xargs docker rmi; docker volume prune -f'
+
+alias nodemon='eval $(cat .env | xargs) npm run nodemon'
