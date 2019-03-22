@@ -18,4 +18,15 @@ alias curl='curl -w "\n"'
 
 alias docker-cleanup='docker ps -q | xargs docker kill; docker ps -aq | xargs docker rm; docker images -q --filter dangling=true | xargs docker rmi; docker volume prune -f'
 
-alias nodemon='eval $(cat .env | xargs) npm run nodemon'
+alias nodemon='ee npm run nodemon'
+
+function load_dotenv () {
+  env=${DOTENV:-development}
+  env_vars="$(cat .env 2> /dev/null) $(cat ".env.${env}" 2> /dev/null)"
+  echo $env_vars
+}
+
+function ee () {
+  eval $(load_dotenv) eval "$@"
+}
+alias .e='ee'
