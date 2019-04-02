@@ -1,6 +1,7 @@
 [core]
   editor = subl -w
   excludesfile = ~/.gitignore_global
+  hooksPath = ~/.git_hooks/
 [user]
   name = Thierry Deo
   email = thierry.deo@gmail.com

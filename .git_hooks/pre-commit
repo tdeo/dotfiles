@@ -1,0 +1,9 @@
+#! /bin/bash
+
+set -e
+
+if git grep "DO\sNOT COMMIT"; then
+  exit 1
+fi
+
+exit 0
