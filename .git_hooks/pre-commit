@@ -1,11 +1,11 @@
 #! /bin/bash
 
-set -e
-
 failed=0
 
 for file in $(git diff --cached --diff-filter=d --name-only); do
-  if git show ":$file" | grep -n "DO NOT COMMIT" | sed "s|^|$file:|g"; then
+  diff=$(git show ":$file" | grep -n "DO NOT COMMIT");
+  if [[ $? -eq 0 ]]; then
+    echo $diff | sed "s|^|$file:|g"
     failed=1
   fi
 done
