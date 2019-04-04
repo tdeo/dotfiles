@@ -125,7 +125,7 @@ xterm-256color)
 esac
 
 # Use GNU utils from brew on MacOS to the PATH
-PATH="/usr/local/opt/findutils/libexec/gnubin:/usr/local/opt/coreutils/libexec/gnubin:/usr/local/opt/gnu-sed/libexec/gnubin:/usr/local/opt/grep/libexec/gnubin:/usr/local/opt/mongodb@3.6/bin:$PATH"
+PATH="/usr/local/opt/findutils/libexec/gnubin:/usr/local/opt/coreutils/libexec/gnubin:/usr/local/opt/gnu-sed/libexec/gnubin:/usr/local/opt/grep/libexec/gnubin:/usr/local/opt/mongodb@3.6/bin:/usr/local/opt/mysql-client/bin:$PATH"
 
 # enable color support of ls and also add handy aliases
 if command -v dircolors &> /dev/null; then

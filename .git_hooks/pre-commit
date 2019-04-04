@@ -2,8 +2,12 @@
 
 set -e
 
-if git grep "DO\sNOT COMMIT"; then
-  exit 1
-fi
+failed=0
 
-exit 0
+for file in $(git diff --cached --diff-filter=d --name-only); do
+  if git show ":$file" | grep -n "DO NOT COMMIT" | sed "s|^|$file:|g"; then
+    failed=1
+  fi
+done
+
+exit $failed
