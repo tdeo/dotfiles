@@ -2,6 +2,8 @@
 
 failed=0
 
+IFS=$(echo -en "\n\b")
+
 for file in $(git diff --cached --diff-filter=d --name-only); do
   diff=$(git show ":$file" | grep -n "DO NOT COMMIT");
   if [[ $? -eq 0 ]]; then
