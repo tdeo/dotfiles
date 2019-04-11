@@ -15,7 +15,7 @@ fi
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 HISTCONTROL=ignoreboth:ignoredups:erasedups
-HISTTIMEFORMAT="%d/%m/%y %T "
+HISTTIMEFORMAT="%d/%m/%Y %T "
 
 # append to the history file, don't overwrite it
 shopt -s histappend
@@ -124,19 +124,20 @@ xterm-256color)
     ;;
 esac
 
-# Use GNU utils from brew on MacOS to the PATH
-PATH="/usr/local/opt/findutils/libexec/gnubin:/usr/local/opt/coreutils/libexec/gnubin:/usr/local/opt/gnu-sed/libexec/gnubin:/usr/local/opt/grep/libexec/gnubin:/usr/local/opt/mongodb@3.6/bin:/usr/local/opt/mysql-client/bin:$PATH"
+# Use GNU utils from brew on MacOS
+PATH="/usr/local/opt/findutils/libexec/gnubin:/usr/local/opt/coreutils/libexec/gnubin:/usr/local/opt/gnu-sed/libexec/gnubin:/usr/local/opt/grep/libexec/gnubin:/usr/local/opt/mongodb@3.6/bin:/usr/local/opt/mysql-client/bin:$HOME/.git_scripts:$PATH"
+
 
 # enable color support of ls and also add handy aliases
 if command -v dircolors &> /dev/null; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
+  test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+  alias ls='ls --color=auto'
+  #alias dir='dir --color=auto'
+  #alias vdir='vdir --color=auto'
 
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
+  alias grep='grep --color=auto'
+  alias fgrep='fgrep --color=auto'
+  alias egrep='egrep --color=auto'
 fi
 
 # some more ls aliases
@@ -165,8 +166,6 @@ fi
 if [ -x brew ] && [ -f `brew --prefix`/etc/bash_completion ]; then
     . `brew --prefix`/etc/bash_completion
 fi
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

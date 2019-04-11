@@ -1,3 +1,5 @@
+#! /usr/bin/env bash
+
 alias git='LANG=en_US git'
 alias git?='git branch && git status'
 
@@ -62,33 +64,7 @@ if which xdg-open &> /dev/null; then
   alias open="xdg-open"
 fi
 
-function find_git_subdirs() {
-  for d in `find . -mindepth 1 -maxdepth 1 -type d -exec readlink -f {} + | sort`; do
-    ([ -d $d ] && [ -d $d/.git ])|| continue
-    echo "$d"
-  done
-}
-
-function git_dirs() {
-  cur_dir=`pwd`
-  if [ $# -eq 0 ]; then
-    for d in `find_git_subdirs`; do
-      cd $d
-      printf '\n******************** %-60s' " $d"
-      git diff-index --quiet HEAD -- && echo "No changes" && cd ../ && continue
-      echo ""
-      git?
-    done
-  else
-    for d in `find_git_subdirs`; do
-      cd $d
-      printf '\n******************** %-60s\n' " $d"
-      eval "$@"
-      echo ""
-    done
-  fi
-  cd $cur_dir
-}
+alias git_dirs="git-dirs"
 
 alias git_sim_files="git ls-files | \
   xargs shasum | \

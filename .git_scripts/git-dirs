@@ -1,0 +1,29 @@
+#! /usr/bin/env bash
+
+function find_git_subdirs() {
+  for d in `find . -mindepth 1 -maxdepth 1 -type d -exec readlink -f {} + | sort`; do
+    ([ -d $d ] && [ -d $d/.git ])|| continue
+    echo "$d"
+  done
+}
+
+cur_dir=`pwd`;
+if [ $# -eq 0 ]; then
+    for d in `find_git_subdirs`;
+    do
+        cd $d;
+        printf '\n******************** %-60s' " $d";
+        LANG=en_US git diff-index --quiet HEAD -- && echo "No changes" && cd ../ && continue;
+        echo "";
+        LANG=en_US git branch && LANG=en_US git status;
+    done;
+else
+    for d in `find_git_subdirs`;
+    do
+        cd $d;
+        printf '\n******************** %-60s\n' " $d";
+        eval "$@";
+        echo "";
+    done;
+fi;
+cd $cur_dir
