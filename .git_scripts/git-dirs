@@ -21,7 +21,7 @@ else
     for d in `find_git_subdirs`;
     do
         cd $d;
-        printf '\n******************** %-60s\n' " $d";
+        printf '\n******************** %-60s\n' " $d" 1>&2;
         eval "$@";
         echo "";
     done;

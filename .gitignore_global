@@ -9,7 +9,9 @@
 .byebug_history
 
 # Python
+.python-version
 *.pyc
+venv/
 
 # Ad-hoc script writing that will be ignored
 zde.*
