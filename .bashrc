@@ -168,6 +168,10 @@ if [ -x brew ] && [ -f `brew --prefix`/etc/bash_completion ]; then
 fi
 
 export NODE_OPTIONS="--experimental-repl-await"
+if [ -f $HOME/scripts/noderc.js ]; then
+  export NODE_OPTIONS="$NODE_OPTIONS -r $HOME/scripts/noderc.js"
+fi
+
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
