@@ -56,6 +56,10 @@ esac
 # ~/.bash_aliases, instead of adding them here directly.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
+if [ -f ~/.bash_completion ]; then
+    . ~/.bash_completion
+fi
+
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
@@ -167,14 +171,19 @@ if [ -x brew ] && [ -f `brew --prefix`/etc/bash_completion ]; then
     . `brew --prefix`/etc/bash_completion
 fi
 
+if [ -f $HOME/scripts/pythonrc.py ]; then
+  export PYTHONSTARTUP="$HOME/scripts/pythonrc.py"
+fi
+
 export NODE_OPTIONS="--experimental-repl-await"
 if [ -f $HOME/scripts/noderc.js ]; then
   export NODE_OPTIONS="$NODE_OPTIONS -r $HOME/scripts/noderc.js"
 fi
 
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion
+
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"

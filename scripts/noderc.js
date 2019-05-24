@@ -8,12 +8,14 @@ var env = {};
 function readEnvFile(filepath) {
   if (!fs.existsSync(filepath)) return {};
 
-  const lines = fs.readFileSync(filepath).toString().split("\n");
-  var res = {}
-  for(var line of lines) {
-    if (line.includes('=')) res[line.split('=')[0]] = line.split('=')[1];
+  for(var line of fs.readFileSync(filepath).toString().split("\n")) {
+    if (line.includes('=')) {
+      var [key, value] = line.split('=');
+      if (!(key in env)) {
+        env[key] = value;
+      }
+    }
   }
-  env = Object.assign(res, env);
 }
 
 while (fs.existsSync(dirname)) {

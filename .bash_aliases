@@ -29,4 +29,3 @@ function load_dotenv () {
 function ee () {
   eval $(load_dotenv) eval "$@"
 }
-alias .e='ee'
