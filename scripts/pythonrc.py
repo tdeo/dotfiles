@@ -14,7 +14,7 @@ def readEnvFile(filepath):
         env[key] = value
 
 while (os.path.exists(dirname)):
-  readEnvFile(dirname + f'/.env.{os.environ.get("PYTHON_ENV")}');
+  readEnvFile(dirname + '/.env.{}'.format(os.environ.get("PYTHON_ENV")));
   readEnvFile(dirname + '/.env');
 
   if (os.path.exists(dirname + '/.git')):

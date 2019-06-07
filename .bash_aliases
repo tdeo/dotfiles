@@ -1,4 +1,7 @@
-#Raccourcis
+if [ -f ~/.bash_completion ]; then
+    . ~/.bash_completion
+fi
+
 alias nano='nano -c'
 alias t='true'
 alias g++11='g++ -O3 -W -Wall -std=c++11 -o myprog '
