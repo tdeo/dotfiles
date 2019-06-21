@@ -13,6 +13,9 @@
 *.pyc
 venv/
 
+# Node.JS
+node_modules/
+
 # Ad-hoc script writing that will be ignored
 zde.*
 zde_*

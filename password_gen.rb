@@ -35,9 +35,9 @@ elsif ARGV.delete('--anum')
 end
 
 if ARGV.delete('--lower')
-  charset = charset.map(&:lower).unique
+  charset = charset.map(&:downcase).uniq
 elsif ARGV.delete('--upper')
-  charset = charset.map(&:upper).unique
+  charset = charset.map(&:upcase).uniq
 end
 
 count = 24
