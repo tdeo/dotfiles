@@ -1,0 +1,10 @@
+#! /usr/bin/env bash
+
+if [ $# -eq 0 ]; then
+  tag='production'
+else
+  tag=$1
+fi
+
+git tag -f $tag
+git push -f --tags
