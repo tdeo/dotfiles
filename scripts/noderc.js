@@ -20,7 +20,8 @@ function readEnvFile(filepath) {
 
 while (fs.existsSync(dirname)) {
   readEnvFile(dirname + `/.env.${process.env.NODE_ENV}`);
-  readEnvFile(dirname + `/.env`);
+  if (process.env.NODE_ENV !== 'test')
+    readEnvFile(dirname + `/.env`);
 
   if (fs.existsSync(dirname + '/.git')) break;
   dirname += '/..'
