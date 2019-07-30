@@ -32,3 +32,15 @@ function load_dotenv () {
 function ee () {
   eval $(load_dotenv) eval "$@"
 }
+
+function ec2 () {
+  if [ $# -eq 0 ]; then
+    aws ec2 describe-instances | jq -r '.Reservations[].Instances[].NetworkInterfaces[].PrivateDnsName'
+  else
+    aws ec2 describe-instances --filters "Name=tag:Name,Values=*$1*" | jq -r '.Reservations[].Instances[].NetworkInterfaces[].PrivateDnsName'
+  fi
+}
+
+function c () {
+  ruby -e "puts $*"
+}
