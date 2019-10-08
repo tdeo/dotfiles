@@ -13,7 +13,9 @@ levels = res.map { |r| r['level'] }.uniq
 r = {}
 
 levels.each do |l|
-  problems = res.select { |r| r['level'] == l && r['validatorScore'] < 100 }
+  problems = res.select do |problem|
+    problem['level'] == l && problem['validatorScore'] < 100
+  end
   r[l] = problems.sort_by { |p| p['solvedCount'] }.reverse.first(5).map { |p| p['id'] }
 end
 
@@ -22,6 +24,8 @@ res = `curl -sSL -XPOST https://www.codingame.com/services/Puzzle/findProgressBy
 res = JSON.parse(res)
 
 r.each do |l, ids|
+  next if l == 'optim' || l == 'multi'
+  next if ids.empty?
   puts "\n" + l
   ids.each do |id|
     pb = res.find { |e| e['id'] == id }
