@@ -8,6 +8,12 @@ case $- in
       *) return;;
 esac
 
+if which hidutil > /dev/null; then
+  hidutil property --set '{"UserKeyMapping":[
+    {"HIDKeyboardModifierMappingSrc":0x700000064,
+     "HIDKeyboardModifierMappingDst":0x700000029}]}' > /dev/null
+fi
+
 if [ -f /etc/bashrc ]; then
   . /etc/bashrc
 fi
