@@ -11,11 +11,16 @@ res = JSON.parse(res)
 levels = res.map { |r| r['level'] }.uniq
 
 r = {}
+c = {}
 
 levels.each do |l|
   problems = res.select do |problem|
     problem['level'] == l && problem['validatorScore'] < 100
   end
+  c[l] = {
+    total: res.count { |p| p['level'] == l },
+    unsolved: problems.size,
+  }
   r[l] = problems.sort_by { |p| p['solvedCount'] }.reverse.first(5).map { |p| p['id'] }
 end
 
@@ -26,7 +31,7 @@ res = JSON.parse(res)
 r.each do |l, ids|
   next if l == 'optim' || l == 'multi'
   next if ids.empty?
-  puts "\n" + l
+  puts "\n" + "#{l} #{c[l][:unsolved]} unsolved out of #{c[l][:total]}"
   ids.each do |id|
     pb = res.find { |e| e['id'] == id }
     puts "#{pb['title'][0..27].ljust(30)} #{pb['solvedCount'].to_s.rjust(6)} #{pb['validatorScore']} https://www.codingame.com#{pb['detailsPageUrl']}"
