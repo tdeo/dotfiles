@@ -21,6 +21,7 @@ levels.each do |l|
     total: res.count { |p| p['level'] == l },
     unsolved: problems.size,
   }
+  c[l][:solved] = c[l][:total] - c[l][:unsolved]
   r[l] = problems.sort_by { |p| p['solvedCount'] }.reverse.first(5).map { |p| p['id'] }
 end
 
@@ -31,9 +32,12 @@ res = JSON.parse(res)
 r.each do |l, ids|
   next if l == 'optim' || l == 'multi'
   next if ids.empty?
-  puts "\n" + "#{l} #{c[l][:unsolved]} unsolved out of #{c[l][:total]}"
+  puts "\n" + "#{l}\t\t#{(100 * c[l][:solved] / c[l][:total]).round}% solved\t"\
+    "#{c[l][:unsolved]} / #{c[l][:total]} left\n\n"
   ids.each do |id|
     pb = res.find { |e| e['id'] == id }
-    puts "#{pb['title'][0..27].ljust(30)} #{pb['solvedCount'].to_s.rjust(6)} #{pb['validatorScore']} https://www.codingame.com#{pb['detailsPageUrl']}"
+    puts "#{pb['title'][0..27].ljust(30)} #{pb['solvedCount'].to_s.rjust(6)}  " \
+      "#{pb['validatorScore'].to_s.rjust(3)}   " \
+      "https://www.codingame.com#{pb['detailsPageUrl']}"
   end
 end

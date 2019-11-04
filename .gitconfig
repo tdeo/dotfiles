@@ -45,7 +45,5 @@
   rebase = true
 [rebase]
   autoStash = true
-[merge]
-  ff = false
 [grep]
   lineNumber = true
