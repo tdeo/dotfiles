@@ -7,4 +7,4 @@ else
 fi
 
 git tag -f $tag
-git push -f --tags
+git push -f origin $tag
