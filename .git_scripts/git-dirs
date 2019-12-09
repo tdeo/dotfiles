@@ -13,7 +13,7 @@ if [ $# -eq 0 ]; then
         cd $d;
         printf '\n******************** %-60s' " $d";
         LANG=en_US git diff-index --quiet HEAD -- && \
-            (git status | grep 'Your branch is up to date' > /dev/null) && \
+            (git status | grep 'nothing to commit, working tree clean' > /dev/null) && \
             echo "No changes" && \
             cd ../ && \
             continue;
