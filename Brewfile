@@ -9,7 +9,6 @@ brew "openssl@1.1"
 brew "awscli"
 brew "bash"
 brew "bash-completion"
-brew "openssl"
 brew "coreutils"
 brew "docker", link: false
 brew "libyaml"
