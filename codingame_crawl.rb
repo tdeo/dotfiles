@@ -1,37 +1,23 @@
 #! /usr/bin/env ruby
 
 require 'json'
+require 'set'
 
 REMEMBERME = ENV['COOKIE']
+USER_ID = 2802859
 
-res = `curl -sSL -XPOST https://www.codingame.com/services/Puzzle/findAllMinimalProgress -H 'Content-Type: application/json' -d '[2802859]' --cookie "rememberMe=#{REMEMBERME}"`
-
-res = JSON.parse(res)
-
-levels = res.map { |r| r['level'] }.uniq
-
-r = {}
-c = {}
-ids = []
-
-levels.each do |l|
-  problems = res.select do |problem|
-    problem['level'] == l && problem['validatorScore'] < 100
-  end
-  c[l] = {
-    total: res.count { |p| p['level'] == l },
-    unsolved: problems.size,
-  }
-  c[l][:solved] = c[l][:total] - c[l][:unsolved]
-  r[l] = problems
-  ids += problems.sort_by { |p| p['solvedCount'] }.last(5).map { |p| p['id'] }
-  ids += problems.sort_by { |p| p['creationTime'] }.last(5).map { |p| p['id'] }
+def request(method: 'POST', endpoint: nil, data: nil)
+  req = [
+    'curl',
+    '-sSL',
+    '-X', method,
+    endpoint,
+    '-H', '"Content-Type: application/json"',
+    '-d', JSON.dump(data),
+    '--cookie', "'rememberMe=#{REMEMBERME}'",
+  ].join(' ')
+  JSON.parse(`#{req}`)
 end
-ids.uniq!
-
-res = `curl -sSL -XPOST https://www.codingame.com/services/Puzzle/findProgressByIds -H 'Content-Type: application/json' -d '#{JSON.dump([ids, 2802859, 2])}' --cookie "rememberMe=#{REMEMBERME}"`
-
-res = JSON.parse(res)
 
 def formatted(pb)
   pb['title'][0..27].ljust(30) +
@@ -39,9 +25,72 @@ def formatted(pb)
     "https://www.codingame.com#{pb['detailsPageUrl']}"
 end
 
+def by_language(all_problems)
+  easiest15 = all_problems.select { |p| p['level'] == 'easy' || p['level'] == 'tutorial' }.sort_by { |p| p['solvedCount'] }.last(15).reverse
+
+  progress = request(
+    endpoint: 'https://www.codingame.com/services/Puzzle/findProgressByIds',
+    data: [easiest15.map { |p| p['id'] }, USER_ID, 2],
+  )
+  by_language = Hash.new { |h, k| h[k] = Set.new() }
+  progress.each do |pb|
+    submissions = request(
+      endpoint: 'https://www.codingame.com/services/TestSessionQuestionSubmission/findAllSubmissions',
+      data: [pb['testSessionHandle']],
+    )
+    submissions.each do |submission|
+      next unless submission['score'] == 100
+      by_language[submission['programmingLanguageId']] << pb['id']
+    end
+  end
+
+  by_language.each do |lang, solved|
+    next if solved.size >= 15
+    next_up = easiest15.find { |pb| !solved.include?(pb['id']) }
+    next_up = progress.find { |pb| pb['id'] == next_up['id'] }
+    puts "#{lang.ljust(15)} (#{solved.size}): #{formatted(next_up)}"
+  end
+end
+
+
+all_problems = request(
+  endpoint: 'https://www.codingame.com/services/Puzzle/findAllMinimalProgress',
+  data: [USER_ID],
+)
+
+if (ARGV.include?('--lang'))
+  by_language(all_problems)
+  exit 0
+end
+
+levels = all_problems.map { |r| r['level'] }.uniq
+
+unsolved = {}
+c = {}
+ids = []
+
+levels.each do |l|
+  problems = all_problems.select do |problem|
+    problem['level'] == l && problem['validatorScore'] < 100
+  end
+  c[l] = {
+    total: all_problems.count { |p| p['level'] == l },
+    unsolved: problems.size,
+  }
+  c[l][:solved] = c[l][:total] - c[l][:unsolved]
+  unsolved[l] = problems
+  ids += problems.sort_by { |p| p['solvedCount'] }.last(5).map { |p| p['id'] }
+  ids += problems.sort_by { |p| p['creationTime'] }.last(5).map { |p| p['id'] }
+end
+ids.uniq!
+
+res = request(
+  endpoint: 'https://www.codingame.com/services/Puzzle/findProgressByIds',
+  data: [ids, USER_ID, 2],
+)
 
 c.keys.sort_by { |l| -c[l][:unsolved] }.each do |l|
-  problems = r[l]
+  problems = unsolved[l]
   next if l == 'optim' || l == 'multi'
   next if problems.empty?
 
