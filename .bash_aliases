@@ -44,3 +44,6 @@ function ec2 () {
 function c () {
   ruby -e "puts $*"
 }
+
+alias dc='docker-compose'
+alias jc='docker-compose exec jeancaisse'

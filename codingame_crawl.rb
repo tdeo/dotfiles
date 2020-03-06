@@ -26,11 +26,11 @@ def formatted(pb)
 end
 
 def by_language(all_problems)
-  easiest15 = all_problems.select { |p| p['level'] == 'easy' || p['level'] == 'tutorial' }.sort_by { |p| p['solvedCount'] }.last(15).reverse
+  easiest = all_problems.select { |p| p['level'] == 'easy' || p['level'] == 'tutorial' }.sort_by { |p| p['solvedCount'] }.last(20).reverse
 
   progress = request(
     endpoint: 'https://www.codingame.com/services/Puzzle/findProgressByIds',
-    data: [easiest15.map { |p| p['id'] }, USER_ID, 2],
+    data: [easiest.map { |p| p['id'] }, USER_ID, 2],
   )
   by_language = Hash.new { |h, k| h[k] = Set.new() }
   progress.each do |pb|
@@ -46,9 +46,10 @@ def by_language(all_problems)
 
   by_language.each do |lang, solved|
     next if solved.size >= 15
-    next_up = easiest15.find { |pb| !solved.include?(pb['id']) }
-    next_up = progress.find { |pb| pb['id'] == next_up['id'] }
-    puts "#{lang.ljust(15)} (#{solved.size}): #{formatted(next_up)}"
+    next_up = easiest.select { |pb| !solved.include?(pb['id']) }.map { |pb| pb['id'] }
+    next_up = next_up.map { |id| progress.find { |pb| pb['id'] == id } }
+    puts "#{lang.ljust(15)} (#{solved.size}):"
+    next_up.first(5).each { |pb| puts "\t#{formatted(pb)}" }
   end
 end
 

@@ -1,7 +1,7 @@
 [core]
   editor = subl -w
   excludesfile = ~/.gitignore_global
-  hooksPath = ~/.git_hooks/
+  # hooksPath = ~/.git_hooks/
 [user]
   name = Thierry Deo
   email = thierry.deo@gmail.com
@@ -39,6 +39,8 @@
   path = ~/workspace/.gitconfig
 [includeIf "gitdir:~/reecall/"]
   path = ~/reecall/.gitconfig
+[includeIf "gitdir:~/compta/"]
+  path = ~/compta/.gitconfig
 [http]
   proxy =
 [pull]
