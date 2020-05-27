@@ -7,6 +7,9 @@
 
 # Ruby
 .byebug_history
+.irb_history
+.ruby-gemset
+.ruby-version
 
 # Python
 .python-version
@@ -22,3 +25,5 @@ zde_*
 
 # Custom env files
 .env
+
+staging_branch.rb

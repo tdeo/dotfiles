@@ -1,20 +1,29 @@
 [core]
   editor = subl -w
   excludesfile = ~/.gitignore_global
+	attributesfile = .gitattributes_global
   # hooksPath = ~/.git_hooks/
+
 [user]
   name = Thierry Deo
   email = thierry.deo@gmail.com
+
 [tag]
   sort = version:refname
+
 [alias]
   lol = log --graph --color --pretty=tformat:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s%x20%x1b[33m(%an)%x1b[0m" --topo-order --decorate  --boundary --branches
   tree = log --color --pretty=tformat:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s%x20%x1b[33m(%an)%x1b[0m"
   pr = "!f() { git symbolic-ref refs/remotes/origin/HEAD | sed 's|^refs/remotes/origin/||' | xargs git merge-base $1 | xargs -I{} git diff {} $1; }; f"
+  pcb = "!f() { git merge-base master HEAD | xargs git diff --name-only | xargs pre-commit run --files; }; f"
+  modified-branch-files = "!f() { git merge-base master HEAD | xargs git diff --name-only; }; f"
+
 [push]
   default = simple
+
 [help]
   autocorrect = 1
+
 [color]
   branch = auto
   diff = auto
@@ -33,6 +42,7 @@
   added = yellow
   changed = green
   untracked = cyan
+
 [include]
   path = ~/.gitgpgsign
 [includeIf "gitdir:~/workspace/"]
@@ -41,11 +51,20 @@
   path = ~/reecall/.gitconfig
 [includeIf "gitdir:~/compta/"]
   path = ~/compta/.gitconfig
+
 [http]
   proxy =
+
 [pull]
   rebase = true
+
 [rebase]
   autoStash = true
+
 [grep]
   lineNumber = true
+	patternType = perl
+
+[diff "xls"]
+    binary = true
+    textconv = xls2txt

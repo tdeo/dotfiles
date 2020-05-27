@@ -19,7 +19,18 @@ alias pubip='dig +short myip.opendns.com @resolver1.opendns.com'
 
 alias curl='curl -w "\n"'
 
-alias docker-cleanup='docker ps -q | xargs docker kill; docker ps -aq | xargs docker rm; docker images -q --filter dangling=true | xargs docker rmi; docker volume prune -f'
+function docker-cleanup() {
+  docker image prune -f --filter "until=24h"
+  docker container prune -f --filter "until=24h"
+  docker volume prune -f --filter "label!=keep"
+  docker network prune -f --filter "until=24h"
+}
+
+function docker-total-wipe() {
+  docker ps -q | xargs docker kill
+  docker ps -aq --filter status=exited | xargs docker rm
+  docker images -q --filter dangling=true | xargs docker rmi
+}
 
 alias nodemon='ee npm run nodemon'
 
@@ -46,4 +57,7 @@ function c () {
 }
 
 alias dc='docker-compose'
+alias dcr='dc down && dc up -d && dc logs -f'
 alias jc='docker-compose exec jeancaisse'
+alias jr='docker-compose exec jeanratus'
+alias wds='bundle && yarn && bin/webpack-dev-server'

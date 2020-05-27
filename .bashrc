@@ -97,18 +97,11 @@ fi
 if [ "$color_prompt" = yes ]; then
     PS1="\
 \`if [ \$? = 0 ]; then echo \[\e[32m\]; else echo \[\e[31m\]; fi\`\
-\[\e[1m\]\u\
-\[\e[2m\]@\
-\[\e[22;1m\]\h\
-\[\e[0m\]:\
+\[\e[0;31m\]\$ \
 \[\e[1;34m\]\W \
-\[\e[0;2;31m\](\
-\[\e[0;32m\]\`git_root\`\
-\[\e[0;2;31m\]@\
 \[\e[0;32m\]\`git_branch\`\
 \[\e[0;2;31m\]@\
-\[\e[0;32m\]\`git_sha\`\
-\[\e[0;2;31m\]) \
+\[\e[0;32m\]\`git_sha\` \
 \[\e[0;36m\]\t \
 \[\e[0;31m\]\$ \
 \[\e[0m\]";
@@ -134,9 +127,12 @@ xterm-256color)
     ;;
 esac
 
-# Use GNU utils from brew on MacOS
-PATH="/usr/local/opt/findutils/libexec/gnubin:/usr/local/opt/coreutils/libexec/gnubin:/usr/local/opt/gnu-sed/libexec/gnubin:/usr/local/opt/grep/libexec/gnubin:/usr/local/opt/mongodb@3.6/bin:/usr/local/opt/mysql-client/bin:$HOME/.git_scripts:$PATH"
+PATH="/usr/local/bin:$HOME/.git_scripts:$PATH";
 
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  # Use GNU utils from brew on MacOS
+  PATH="/usr/local/opt/findutils/libexec/gnubin:/usr/local/opt/coreutils/libexec/gnubin:/usr/local/opt/gnu-sed/libexec/gnubin:/usr/local/opt/grep/libexec/gnubin:/usr/local/opt/mongodb@3.6/bin:/usr/local/opt/mysql-client/bin:$PATH"
+fi
 
 # enable color support of ls and also add handy aliases
 if command -v dircolors &> /dev/null; then
