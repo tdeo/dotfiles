@@ -1,0 +1,5 @@
+[user]
+  email = thierry@pennylane.tech
+  signingkey = 2AD29FDBE3160366
+[commit]
+  gpgsign = true
