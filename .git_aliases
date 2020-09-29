@@ -47,6 +47,9 @@ complete -F _git_branches merge
 
 modified_files() { git status | sed -e '/modified/!d' -e 's/\smodified:   //'; }
 
+
+alias staging_commits="git merge-base origin/staging master | xargs -I{} git log {}..origin/staging"
+
 function push() {
   if [ $# -ne 1 ]; then
     echo "push <branch>";

@@ -1,7 +1,7 @@
 [core]
   editor = subl -w
   excludesfile = ~/.gitignore_global
-	attributesfile = .gitattributes_global
+  attributesfile = .gitattributes_global
   # hooksPath = ~/.git_hooks/
 
 [user]
@@ -14,9 +14,9 @@
 [alias]
   lol = log --graph --color --pretty=tformat:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s%x20%x1b[33m(%an)%x1b[0m" --topo-order --decorate  --boundary --branches
   tree = log --color --pretty=tformat:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s%x20%x1b[33m(%an)%x1b[0m"
-  pr = "!f() { git symbolic-ref refs/remotes/origin/HEAD | sed 's|^refs/remotes/origin/||' | xargs git merge-base $1 | xargs -I{} git diff {} $1; }; f"
   pcb = "!f() { git merge-base master HEAD | xargs git diff --name-only | xargs pre-commit run --files; }; f"
   modified-branch-files = "!f() { git merge-base master HEAD | xargs git diff --name-only; }; f"
+	up = pull --rebase --autostash
 
 [push]
   default = simple
@@ -63,8 +63,10 @@
 
 [grep]
   lineNumber = true
-	patternType = perl
+  patternType = perl
 
 [diff "xls"]
-    binary = true
-    textconv = xls2txt
+  binary = true
+  textconv = xls2txt
+[checkout]
+  defaultRemote = origin

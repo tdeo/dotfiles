@@ -177,7 +177,7 @@ if [ -f $HOME/scripts/pythonrc.py ]; then
   export PYTHONSTARTUP="$HOME/scripts/pythonrc.py"
 fi
 
-export NODE_OPTIONS="--experimental-repl-await"
+export NODE_OPTIONS="--experimental-repl-await --max_old_space_size=512"
 if [ -f $HOME/scripts/noderc.js ]; then
   export NODE_OPTIONS="$NODE_OPTIONS -r $HOME/scripts/noderc.js"
 fi
