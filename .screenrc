@@ -5,6 +5,8 @@ nonblock on
 vbell off
 defscrollback 5000
 
+shell -${SHELL}
+
 # show command name instead of bash
 shelltitle "%|bash"
 
