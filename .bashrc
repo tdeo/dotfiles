@@ -97,13 +97,13 @@ fi
 if [ "$color_prompt" = yes ]; then
     PS1="\
 \`if [ \$? = 0 ]; then echo \[\e[32m\]; else echo \[\e[31m\]; fi\`\
-\[\e[0;31m\]\$ \
+\$ \h \
 \[\e[1;34m\]\W \
 \[\e[0;32m\]\`git_branch\`\
 \[\e[0;2;31m\]@\
 \[\e[0;32m\]\`git_sha\` \
 \[\e[0;36m\]\t \
-\[\e[0;31m\]\$ \
+\[\e[31m\]\$ \
 \[\e[0m\]";
     # PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 else
@@ -164,6 +164,8 @@ fi
 
 bind -x '"\C-k": printf "\ec"';
 
+export EDITOR='subl -w'
+
 #Compose key
 if [ -x setxkbmap ]; then
     setxkbmap -option compose:menu
@@ -177,7 +179,7 @@ if [ -f $HOME/scripts/pythonrc.py ]; then
   export PYTHONSTARTUP="$HOME/scripts/pythonrc.py"
 fi
 
-export NODE_OPTIONS="--experimental-repl-await --max_old_space_size=512"
+export NODE_OPTIONS="--experimental-repl-await --max_old_space_size=2048"
 if [ -f $HOME/scripts/noderc.js ]; then
   export NODE_OPTIONS="$NODE_OPTIONS -r $HOME/scripts/noderc.js"
 fi

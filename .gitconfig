@@ -14,15 +14,23 @@
 [alias]
   lol = log --graph --color --pretty=tformat:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s%x20%x1b[33m(%an)%x1b[0m" --topo-order --decorate  --boundary --branches
   tree = log --color --pretty=tformat:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s%x20%x1b[33m(%an)%x1b[0m"
-  pcb = "!f() { git merge-base master HEAD | xargs git diff --name-only | xargs pre-commit run --files; }; f"
+	pcb = "!f() { git merge-base master HEAD | xargs git diff --name-only | xargs pre-commit run --files; }; f"
   modified-branch-files = "!f() { git merge-base master HEAD | xargs git diff --name-only; }; f"
-	up = pull --rebase --autostash
+  up = !git fetch -p && git pull --rebase --autostash
+  pushu = push -u
 
 [push]
   default = simple
 
+[fetch]
+  prune = 1
+  pruneTags = 1
+
 [help]
   autocorrect = 1
+
+[branch]
+  autosetuprebase = always
 
 [color]
   branch = auto
@@ -64,6 +72,9 @@
 [grep]
   lineNumber = true
   patternType = perl
+
+[diff]
+  algorithm = minimal
 
 [diff "xls"]
   binary = true
