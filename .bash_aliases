@@ -18,6 +18,9 @@ complete -F _.. ..
 alias pubip='dig +short myip.opendns.com @resolver1.opendns.com'
 
 alias curl='curl -w "\n"'
+alias tree='tree --dirsfirst'
+
+alias review-apps='heroku apps -A | grep jeanjacque | cut -d " " -f1'
 
 function docker-cleanup() {
   docker image prune -f --filter "until=24h"

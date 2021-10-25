@@ -25,5 +25,6 @@ zde_*
 
 # Custom env files
 .env
+.env.*
 
 staging_branch.rb

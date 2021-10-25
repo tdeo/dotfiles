@@ -1,6 +1,6 @@
 [core]
   editor = subl -w
-  excludesfile = ~/.gitignore_global
+	excludesfile = ~/.gitignore_global
   attributesfile = .gitattributes_global
   # hooksPath = ~/.git_hooks/
 
@@ -20,7 +20,7 @@
   pushu = push -u
 
 [push]
-  default = simple
+	default = current
 
 [fetch]
   prune = 1
