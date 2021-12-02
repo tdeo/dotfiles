@@ -28,3 +28,5 @@ zde_*
 .env.*
 
 staging_branch.rb
+
+Brewfile*

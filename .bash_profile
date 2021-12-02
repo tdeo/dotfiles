@@ -2,6 +2,7 @@ if [ -f ~/.bashrc ]; then . ~/.bashrc; fi
 if [ -f ~/.bash_aliases ]; then . ~/.bash_aliases; fi
 if [ -f ~/.bash_completion ]; then . ~/.bash_completion; fi
 
+export BASH_SILENCE_DEPRECATION_WARNING=1
 export PATH="/usr/local/sbin:$PATH"
 PHP_AUTOCONF="/usr/local/bin/autoconf"
 
@@ -42,3 +43,12 @@ if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 export PATH="bin:$PATH"
+
+test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+
+eval "$(/opt/homebrew/bin/brew shellenv)"
+export PATH="/Applications/Sublime Text.app/Contents/SharedSupport/bin:$PATH"
+
+. /opt/homebrew/opt/asdf/libexec/asdf.sh
+
+. /opt/homebrew/opt/asdf/etc/bash_completion.d/asdf.bash
