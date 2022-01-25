@@ -1,0 +1,21 @@
+#! /usr/bin/env bash
+
+set -euo pipefail
+
+current=`git symbolic-ref --short HEAD`
+
+if [[ $current != td/* ]]; then
+  echo 'Only available on branches starting with `td/`' >&2
+  exit 1
+fi
+
+git add -N .
+
+commit_title='Draft'
+current_commit=`git show --pretty=format:%s -s HEAD`
+
+if [[ $current_commit == $commit_title ]]; then
+  git commit -n -a --amend --no-edit --allow-empty
+else
+  git commit -n -a -m $commit_title
+fi

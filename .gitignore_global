@@ -10,6 +10,7 @@
 .irb_history
 .ruby-gemset
 .ruby-version
+.solargraph.yml
 
 # Python
 .python-version
@@ -30,3 +31,6 @@ zde_*
 staging_branch.rb
 
 Brewfile*
+
+# ASDF
+.tool-versions

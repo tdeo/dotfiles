@@ -1,0 +1,9 @@
+#! /usr/bin/env bash
+
+set -euo pipefail
+
+ref=$1
+files=${@:2}
+git reset $ref -- $files
+git restore $files
+git restore --staged $files

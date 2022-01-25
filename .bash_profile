@@ -52,3 +52,9 @@ export PATH="/Applications/Sublime Text.app/Contents/SharedSupport/bin:$PATH"
 . /opt/homebrew/opt/asdf/libexec/asdf.sh
 
 . /opt/homebrew/opt/asdf/etc/bash_completion.d/asdf.bash
+
+export GOPATH="$HOME/go/"
+export GOBIN="$GOPATH/bin"
+export PATH="$PATH:$GOPATH:$GOBIN"
+
+export PATH="./bin/:$PATH"

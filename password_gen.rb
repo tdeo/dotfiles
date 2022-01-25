@@ -6,7 +6,7 @@ def help
 
     Generates a random password.
     Default charset is ASCII printable chars (32 - 126) with the exception of:
-    ' ', '/', '\\', '@', '"'
+    ' ', '/', '\\', '@', '"', "'"
 
     Options:
       size       Number of characters, defaults to 24
@@ -26,7 +26,7 @@ if ARGV.delete('--help') || ARGV.delete('-h')
   exit 0
 end
 
-charset = (32..126).map(&:chr) - [' ', '/', '\\', '@', '"']
+charset = (32..126).map(&:chr) - [' ', '/', '\\', '@', '"', "'"]
 
 if ARGV.delete('--hex')
   charset = %w(0 1 2 3 4 5 6 7 8 9 a b c d e f)

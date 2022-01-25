@@ -131,7 +131,7 @@ PATH="/usr/local/bin:$HOME/.git_scripts:$PATH";
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
   # Use GNU utils from brew on MacOS
-  PATH="/usr/local/opt/findutils/libexec/gnubin:/usr/local/opt/coreutils/libexec/gnubin:/usr/local/opt/gnu-sed/libexec/gnubin:/usr/local/opt/grep/libexec/gnubin:/usr/local/opt/mongodb@3.6/bin:/usr/local/opt/mysql-client/bin:$PATH"
+  PATH="/opt/homebrew/opt/findutils/libexec/gnubin:/opt/homebrew/opt/coreutils/libexec/gnubin:/opt/homebrew/opt/gnu-sed/libexec/gnubin:/opt/homebrew/opt/grep/libexec/gnubin:/opt/homebrew/opt/mongodb@3.6/bin:/opt/homebrew/opt/mysql-client/bin:$PATH"
 fi
 
 # enable color support of ls and also add handy aliases
@@ -175,14 +175,13 @@ if [ -x brew ] && [ -f `brew --prefix`/etc/bash_completion ]; then
     . `brew --prefix`/etc/bash_completion
 fi
 
+export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
+
 if [ -f $HOME/scripts/pythonrc.py ]; then
   export PYTHONSTARTUP="$HOME/scripts/pythonrc.py"
 fi
 
-export NODE_OPTIONS="--experimental-repl-await --max_old_space_size=2048"
-if [ -f $HOME/scripts/noderc.js ]; then
-  export NODE_OPTIONS="$NODE_OPTIONS -r $HOME/scripts/noderc.js"
-fi
+export NODE_OPTIONS="--max_old_space_size=8192"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -196,3 +195,5 @@ export PATH="$PATH:$HOME/.rvm/bin"
 export PATH="$PATH:$HOME/.rvm/bin"
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

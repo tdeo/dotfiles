@@ -22,6 +22,8 @@ alias tree='tree --dirsfirst'
 
 alias review-apps='heroku apps -A | grep jeanjacque | cut -d " " -f1'
 
+alias grep="grep -p"
+
 function docker-cleanup() {
   docker image prune -f --filter "until=24h"
   docker container prune -f --filter "until=24h"

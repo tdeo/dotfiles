@@ -6,6 +6,8 @@
 	<false/>
 	<key>AutocompleteMaxOptions</key>
 	<integer>40</integer>
+	<key>CopySelection</key>
+	<true/>
 	<key>Default Bookmark Guid</key>
 	<string>FF01D43E-85A7-41B1-B4F5-DCC8AC2782D4</string>
 	<key>DimBackgroundWindows</key>
@@ -379,7 +381,7 @@
 			<key>Custom Command</key>
 			<string>No</string>
 			<key>Custom Directory</key>
-			<string>No</string>
+			<string>Recycle</string>
 			<key>Default Bookmark</key>
 			<string>No</string>
 			<key>Description</key>
@@ -475,7 +477,7 @@
 			<key>Option Key Sends</key>
 			<integer>0</integer>
 			<key>Prompt Before Closing 2</key>
-			<false/>
+			<integer>2</integer>
 			<key>Right Option Key Sends</key>
 			<integer>0</integer>
 			<key>Rows</key>
@@ -503,6 +505,8 @@
 				<real>0.70980000495910645</real>
 			</dict>
 			<key>Send Code When Idle</key>
+			<false/>
+			<key>Send Terminal Generated Alerts</key>
 			<false/>
 			<key>Shortcut</key>
 			<string></string>
@@ -544,6 +548,8 @@
 			<string>/Users/thierry</string>
 		</dict>
 	</array>
+	<key>OpenBookmark</key>
+	<false/>
 	<key>PMPrintingExpandedStateForPrint2</key>
 	<false/>
 	<key>PasteTabToStringTabStopSize</key>
@@ -584,6 +590,10 @@
 	<key>PreserveWindowSizeWhenTabBarVisibilityChanges</key>
 	<false/>
 	<key>Print In Black And White</key>
+	<true/>
+	<key>PromptOnQuitEvenIfThereAreNoWindows</key>
+	<true/>
+	<key>QuitWhenAllWindowsClosed</key>
 	<true/>
 	<key>ShowFullScreenTabBar</key>
 	<true/>

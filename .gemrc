@@ -1,1 +1,2 @@
 gem: --no-rdoc --no-ri --no-document
+gemsrc_clone_root: ~/gems_src

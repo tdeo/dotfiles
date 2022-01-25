@@ -1,5 +1,7 @@
 #! /usr/bin/env bash
 
+set -euo pipefail
+
 function find_git_subdirs() {
   for d in `find . -mindepth 1 -maxdepth 1 -type d -exec readlink -f {} + | sort`; do
     ([ -d $d ] && [ -d $d/.git ])|| continue
