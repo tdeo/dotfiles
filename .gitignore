@@ -1,1 +1,7 @@
 *
+!.git_scripts
+!.git_scripts/*
+!.git_hooks
+!.git_hooks/*
+!scripts
+!scripts/*

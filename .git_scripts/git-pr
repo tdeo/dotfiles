@@ -1,0 +1,9 @@
+#! /usr/bin/env bash
+
+set -ex
+
+current=`git symbolic-ref refs/remotes/origin/HEAD | sed 's|^refs/remotes/origin/||'`
+
+merge_base=`git merge-base ${1:-HEAD} $current`
+
+git diff ${@:2} $merge_base ${1:-HEAD};
