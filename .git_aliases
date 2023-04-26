@@ -45,9 +45,11 @@ function merge() {
 }
 complete -F _git_branches merge
 
-modified_files() { git add -N . && git merge-base master HEAD | xargs git diff --name-only; }
-
-alias staging_commits="git merge-base origin/staging master | xargs -I{} git log {}..origin/staging"
+modified_files() {
+  git add -N .
+  main_branch=`git symbolic-ref --short refs/remotes/origin/HEAD`
+  git diff --name-only $main_branch...HEAD
+}
 
 function push() {
   if [ $# -ne 1 ]; then

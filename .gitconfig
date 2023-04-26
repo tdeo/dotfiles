@@ -3,7 +3,7 @@
 	excludesfile = ~/.gitignore_global
   attributesfile = .gitattributes_global
 	ignorecase = false
-  # hooksPath = ~/.git_hooks/
+  mergeoptions = --no-edit
 
 [user]
   name = Thierry Deo
@@ -15,11 +15,14 @@
 [alias]
   lol = log --graph --color --pretty=tformat:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s%x20%x1b[33m(%an)%x1b[0m" --topo-order --decorate  --boundary --branches
   tree = log --color --pretty=tformat:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s%x20%x1b[33m(%an)%x1b[0m"
-	pcb = "!f() { git add -N . && git merge-base master HEAD | xargs git diff --name-only | xargs -d '\n' pre-commit run $@ --files; }; f"
-  modified-branch-files = "!f() { git merge-base master HEAD | xargs git diff --name-only; }; f"
+ # pcb = "!f() { git add -N . && git merge-base master HEAD | xargs git diff --name-only | xargs -d '\n' pre-commit run $@ --files; }; f"
+  modified-branch-files = "!f() { git diff --name-only $main_branch...HEAD; git diff --name-only HEAD; }; f"
   up = !git fetch -p && git pull --rebase --autostash
   pushu = push -u
   dif = diff --ignore-space-change
+  rubocop-offenses = "!f() { git grep -P --only-match 'rubocop:\\s*(disable|todo) .*' -- ':(exclude)**/archives/' | grep -Pzo '[A-Z][A-z]+/[A-Z][A-z]+' | tr '\\0' '\\n' | sort | uniq -c | sort; }; f"
+  eslint-offenses = "!f() { git grep -P --only-match 'eslint-(disable[\\w-]*) .*' | cut -d':' -f3 | cut -d' ' -f2- | sed 's/-- .*//g' | grep -Pzo '[@A-z/-]+' | tr '\\0' '\\n' | sort | uniq -c | sort; }; f"
+  merge = merge --no-edit
 
 [push]
 	default = current
@@ -72,6 +75,7 @@
 [grep]
   lineNumber = true
   patternType = perl
+	fallbackToNoIndex = true
 
 [diff]
   algorithm = minimal

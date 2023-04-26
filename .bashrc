@@ -151,6 +151,8 @@ alias ll='ls -alhF'
 alias la='ls -A'
 alias l='ls -CF'
 
+alias wkhtmltopdf="/usr/local/bin/wkhtmltopdf"
+
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).

@@ -34,3 +34,6 @@ Brewfile*
 
 # ASDF
 .tool-versions
+
+# rake completion
+.rake_tasks~

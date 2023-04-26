@@ -49,12 +49,13 @@ test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shel
 eval "$(/opt/homebrew/bin/brew shellenv)"
 export PATH="/Applications/Sublime Text.app/Contents/SharedSupport/bin:$PATH"
 
+[[ -r "$(brew --prefix)/etc/profile.d/bash_completion.sh" ]] && . "$(brew --prefix)/etc/profile.d/bash_completion.sh"
 . /opt/homebrew/opt/asdf/libexec/asdf.sh
-
 . /opt/homebrew/opt/asdf/etc/bash_completion.d/asdf.bash
+source "$HOME/.rake.bash-completion"
 
 export GOPATH="$HOME/go/"
 export GOBIN="$GOPATH/bin"
 export PATH="$PATH:$GOPATH:$GOBIN"
 
-export PATH="./bin/:$PATH"
+export PATH=".git/safe/../../bin:$PATH"

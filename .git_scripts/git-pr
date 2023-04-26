@@ -3,7 +3,6 @@
 set -euo pipefail
 
 current=`git symbolic-ref --short HEAD`
+main_branch=`git symbolic-ref --short refs/remotes/origin/HEAD`
 
-merge_base=`git merge-base ${1:-HEAD} $current`
-
-git dif ${@:2} $merge_base ${1:-HEAD};
+git dif ${@:2} $main_branch...${1:-HEAD};
