@@ -5,6 +5,6 @@ set -euo pipefail
 git add -N .
 
 main_branch=`git symbolic-ref --short refs/remotes/origin/HEAD`
-files=`git diff --name-only $main_branch...HEAD; git diff --name-only HEAD`
+files=`(git diff --name-only $main_branch...HEAD && git diff --name-only HEAD) | sort | uniq`
 
 pre-commit run $@ --files $files

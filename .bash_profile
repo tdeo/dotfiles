@@ -28,11 +28,11 @@ if [ -f ~/.direnvrc ]; then
   . ~/.direnvrc
 fi
 
-export PATH="bin:$HOME/.pyenv/bin:$PATH"
-if which pyenv &> /dev/null; then
-  eval "$(pyenv init -)"
-  # eval "$(pyenv virtualenv-init -)"
-fi
+# export PATH="bin:$HOME/.pyenv/bin:$PATH"
+# if which pyenv &> /dev/null; then
+#   eval "$(pyenv init -)"
+#   eval "$(pyenv virtualenv-init -)"
+# fi
 
 if [[ -s "$HOME/.rvm/scripts/rvm" ]]; then
   cd .

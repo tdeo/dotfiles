@@ -20,8 +20,8 @@
   up = !git fetch -p && git pull --rebase --autostash
   pushu = push -u
   dif = diff --ignore-space-change
-  rubocop-offenses = "!f() { git grep -P --only-match 'rubocop:\\s*(disable|todo) .*' -- ':(exclude)**/archives/' | grep -Pzo '[A-Z][A-z]+/[A-Z][A-z]+' | tr '\\0' '\\n' | sort | uniq -c | sort; }; f"
-  eslint-offenses = "!f() { git grep -P --only-match 'eslint-(disable[\\w-]*) .*' | cut -d':' -f3 | cut -d' ' -f2- | sed 's/-- .*//g' | grep -Pzo '[@A-z/-]+' | tr '\\0' '\\n' | sort | uniq -c | sort; }; f"
+  rubocop-offenses = "!f() { git grep -IP --only-match 'rubocop:\\s*(disable|todo) .*' -- ':(exclude)**/archives/' | grep -Pzo '[A-Z][A-z]+/[A-Z][A-z]+' | tr '\\0' '\\n' | sort | uniq -c | sort; }; f"
+  eslint-offenses = "!f() { git grep -IP --only-match 'eslint-(disable[\\w-]*) .*' -- '*.js' '*.ts' '*.jsx' '*.tsx' '*.cjs' '*.mjs' | cut -d':' -f3 | cut -d' ' -f2- | sed 's/-- .*//g' | sed 's|\\*/||g' | grep -Pzo '[@A-z/-]+' | tr '\\0' '\\n' | sort | uniq -c | sort; }; f"
   merge = merge --no-edit
 
 [push]

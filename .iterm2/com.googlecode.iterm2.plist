@@ -518,6 +518,8 @@
 			<false/>
 			<key>Shortcut</key>
 			<string></string>
+			<key>Show Timestamps</key>
+			<integer>0</integer>
 			<key>Silence Bell</key>
 			<true/>
 			<key>Smart Cursor Color</key>
