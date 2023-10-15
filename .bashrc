@@ -127,6 +127,12 @@ xterm-256color)
     ;;
 esac
 
+if [ -f "/opt/homebrew/opt/kube-ps1/share/kube-ps1.sh" ]; then
+    source "/opt/homebrew/opt/kube-ps1/share/kube-ps1.sh"
+    PS1='$(kube_ps1)'$PS1
+    kubeoff
+fi
+
 PATH="/usr/local/bin:$HOME/.git_scripts:$PATH";
 
 if [[ "$OSTYPE" == "darwin"* ]]; then

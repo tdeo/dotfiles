@@ -7,4 +7,3 @@
 :verbose: true
 :concurrent_downloads: 8
 gem: "--no-rdoc --no-ri --document=yri"
-gemsrc_clone_root: "~/gems_src"

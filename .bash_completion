@@ -5,6 +5,17 @@ _..() {
   COMPREPLY=($(compgen -W "${opts}" -- ${cur}))
 }
 
+_yarn() {
+  local cur opts
+  _get_comp_words_by_ref -n : cur
+  cur="${COMP_WORDS[COMP_CWORD]}"
+  opts=$(cat package.json  | jq -r '.scripts | keys | join(" ")')
+  COMPREPLY=($(compgen -W "${opts}" -- ${cur}))
+  __ltrim_colon_completions "$cur"
+}
+
+complete -o default -o nospace -F _yarn yarn
+
 _git_branches() {
   local cur opts
   cur="${COMP_WORDS[COMP_CWORD]}"

@@ -25,6 +25,7 @@ zde.*
 zde_*
 
 # Custom env files
+docker.env
 .env
 .env.*
 
