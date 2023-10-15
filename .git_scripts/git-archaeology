@@ -1,0 +1,5 @@
+#! /usr/bin/env bash
+
+set -euo pipefail
+
+git log -G "$1" --date-order --reverse --oneline -- ${@:1}

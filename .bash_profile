@@ -49,7 +49,7 @@ test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shel
 [ -x /opt/homebrew/bin/brew ] && eval "$(/opt/homebrew/bin/brew shellenv)"
 export PATH="/Applications/Sublime Text.app/Contents/SharedSupport/bin:$PATH"
 
-which brew && [[ -r "$(brew --prefix)/etc/profile.d/bash_completion.sh" ]] && . "$(brew --prefix)/etc/profile.d/bash_completion.sh"
+which brew > /dev/null && [[ -r "$(brew --prefix)/etc/profile.d/bash_completion.sh" ]] && . "$(brew --prefix)/etc/profile.d/bash_completion.sh"
 [ -f /opt/homebrew/opt/asdf/libexec/asdf.sh ] && . /opt/homebrew/opt/asdf/libexec/asdf.sh
 [ -f /opt/homebrew/opt/asdf/etc/bash_completion.d/asdf.bash ] && . /opt/homebrew/opt/asdf/etc/bash_completion.d/asdf.bash
 source "$HOME/.rake.bash-completion"
