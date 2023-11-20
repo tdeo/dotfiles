@@ -1,0 +1,18 @@
+{
+  "manifest_version": 3,
+  "name": "Thierry's Chrome extenion",
+  "version": "0.1",
+  "permissions": [
+    "webNavigation"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://github.com/*",
+        "https://meet.google.com/*",
+        "https://console.cloud.google.com/*"
+      ],
+      "js": ["entrypoint.js"]
+    }
+  ]
+}
