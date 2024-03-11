@@ -23,6 +23,7 @@ node_modules/
 # Ad-hoc script writing that will be ignored
 zde.*
 zde_*
+zzde_*
 
 # Custom env files
 docker.env

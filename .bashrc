@@ -74,6 +74,10 @@ if [ -f ~/.alias ]; then
     . ~/.alias
 fi
 
+if [ -f ~/.aws_cli_aliases ]; then
+source $HOME/.aws_cli_aliases
+fi
+
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
 # should be on the output of commands, not on the prompt
@@ -96,12 +100,9 @@ fi
 
 if [ "$color_prompt" = yes ]; then
     PS1="\
-\`if [ \$? = 0 ]; then echo \[\e[32m\]; else echo \[\e[31m\]; fi\`\
-\$ \h \
-\[\e[1;34m\]\W \
+\[\e[1;34m\] \W \
 \[\e[0;32m\]\`git_branch\`\
-\[\e[0;2;31m\]@\
-\[\e[0;32m\]\`git_sha\` \
+\[\e[0;2;32m\] \`git_sha\` \
 \[\e[0;36m\]\t \
 \[\e[31m\]\$ \
 \[\e[0m\]";
