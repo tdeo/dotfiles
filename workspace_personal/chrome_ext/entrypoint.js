@@ -9,6 +9,14 @@ function fixLinks() {
   document.querySelectorAll('a').forEach(function(a) {
     a.href = a.href.replace(/\/files(\/[^\?]*)?$/, '/files?w=1')
   })
+
+  if (window.location.href === 'https://github.com/pulls'){
+    document.querySelectorAll('a').forEach(function(a) {
+      if (a.innerText === 'Review requests') {
+        a.href = 'https://github.com/pulls?q=is%3Aopen+is%3Apr+user-review-requested%3Atdeo+archived%3Afalse+'
+      }
+    })
+  }
 }
 
 function loadMoreInPrs() {
