@@ -61,7 +61,7 @@ function c () {
   ruby -e "puts $*"
 }
 
-alias dc='docker-compose'
+alias dc='docker-compose --env-file /dev/null'
 alias dcr='dc down && dc up -d && dc logs -f'
 alias jc='docker-compose exec jeancaisse'
 alias jr='docker-compose exec jeanratus'

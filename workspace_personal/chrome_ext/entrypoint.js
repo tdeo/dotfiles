@@ -7,7 +7,7 @@ const HOSTS = {
 
 function fixLinks() {
   document.querySelectorAll('a').forEach(function(a) {
-    a.href = a.href.replace(/\/files(\/[^\?]*)?$/, '/files?w=1')
+    a.href = a.href.replace(/\/files(\/[^\?/]*)?$/, '/files?w=1')
   })
 
   if (window.location.href === 'https://github.com/pulls'){
@@ -28,6 +28,18 @@ function loadMoreInPrs() {
       return
     }
     loadMoreButton.click()
+  }, 1000)
+}
+
+function easyJoinGmeet() {
+  const interval = setInterval(() => {
+    const button = Array.from(document.querySelectorAll('button')).find(e => e.innerText.includes('Join now'))
+    console.log('button')
+    if (button) {
+      button.setAttribute('tabindex', 1)
+      button.focus()
+      clearInterval(interval)
+    }
   }, 1000)
 }
 
@@ -56,6 +68,7 @@ if (window.location.host === HOSTS.GITHUB) {
 
 if (window.location.host === HOSTS.GOOGLE_MEET) {
   addSearchParam('authuser', 1)
+  easyJoinGmeet()
 }
 
 if (window.location.host === HOSTS.GOOGLE_CLOUD_CONSOLE) {

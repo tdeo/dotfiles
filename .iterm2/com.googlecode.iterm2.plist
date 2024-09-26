@@ -2,10 +2,20 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>AI Prompt</key>
+	<string>Return commands suitable for copy/pasting into \(shell) on \(uname). Do NOT include commentary NOR Markdown triple-backtick code blocks as your whole response will be copied into my terminal automatically.
+
+The script should do this: \(ai.prompt)</string>
 	<key>AllowDragOfTabIntoNewWindow</key>
 	<false/>
 	<key>AutocompleteMaxOptions</key>
 	<integer>40</integer>
+	<key>ClickToSelectCommand</key>
+	<false/>
+	<key>CloseBookmarksWindowAfterOpening</key>
+	<false/>
+	<key>CommandSelection</key>
+	<true/>
 	<key>CopySelection</key>
 	<true/>
 	<key>Default Bookmark Guid</key>
@@ -36,6 +46,19 @@
 			<string></string>
 			<key>Version</key>
 			<integer>0</integer>
+		</dict>
+		<key>0x70-0x100000-0x23</key>
+		<dict>
+			<key>Action</key>
+			<integer>13</integer>
+			<key>Apply Mode</key>
+			<integer>0</integer>
+			<key>Escaping</key>
+			<integer>2</integer>
+			<key>Text</key>
+			<string></string>
+			<key>Version</key>
+			<integer>2</integer>
 		</dict>
 		<key>0x9-0x40000-0x0</key>
 		<dict>
@@ -522,6 +545,8 @@
 			<string></string>
 			<key>Show Mark Indicators</key>
 			<true/>
+			<key>Show Offscreen Command line</key>
+			<false/>
 			<key>Show Timestamps</key>
 			<integer>0</integer>
 			<key>Silence Bell</key>

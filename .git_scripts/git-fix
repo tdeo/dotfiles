@@ -1,0 +1,11 @@
+#! /usr/bin/env bash
+
+set -euo pipefail
+
+while ! git pcb; do
+  read -p "Please fix the issues above and press enter to retry"
+done
+
+git commit -nam "Fix"
+git push
+

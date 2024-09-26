@@ -190,7 +190,7 @@ if [ -f $HOME/scripts/pythonrc.py ]; then
   export PYTHONSTARTUP="$HOME/scripts/pythonrc.py"
 fi
 
-export NODE_OPTIONS="--max_old_space_size=8192"
+export NODE_OPTIONS="--max_old_space_size=16384"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
