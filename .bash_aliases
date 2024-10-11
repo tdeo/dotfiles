@@ -68,3 +68,4 @@ alias jr='docker-compose exec jeanratus'
 alias wds='bundle && yarn && bin/webpack-dev-server'
 alias tf='AWS_PROFILE=admin terraform'
 alias diff="diff -y --suppress-common-lines"
+alias random-dev="find lib/nomenclatures/engineers/ -type f | shuf -n 1"

@@ -4,7 +4,7 @@
   attributesfile = .gitattributes_global
   ignorecase = false
   mergeoptions = --no-edit
-	hooksPath = /Users/thierry/.git/hooks
+	hooksPath = /Users/thierry/.githooks
 
 [user]
   name = Thierry Deo
