@@ -2,4 +2,9 @@
 
 set -euo pipefail
 
-git log -G "$1" --date-order --reverse --oneline -- ${@:1}
+paths=( "${@:2}" )
+if [[ ${#paths[@]} -eq 0 ]]; then
+  paths+=( "./" )
+fi
+
+git log -G "$1" --date-order --oneline -- "$paths"

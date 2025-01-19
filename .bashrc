@@ -173,7 +173,8 @@ fi
 
 bind -x '"\C-k": printf "\ec"';
 
-export EDITOR='subl -w'
+export EDITOR='subl'
+export PSQL_EDITOR='subl -w'
 
 #Compose key
 if [ -x setxkbmap ]; then
@@ -191,6 +192,7 @@ if [ -f $HOME/scripts/pythonrc.py ]; then
 fi
 
 export NODE_OPTIONS="--max_old_space_size=16384"
+export VERNIER_OUTPUT="$HOME/Downloads/foo.json"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm

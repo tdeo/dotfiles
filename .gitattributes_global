@@ -1,1 +1,2 @@
 *.xls diff=xls
+spec/fixtures/ binary

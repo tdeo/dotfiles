@@ -3,7 +3,6 @@
 IRB.conf[:USE_MULTILINE] = false
 IRB.conf[:USE_AUTOCOMPLETE] = false
 
-
 module SourceLocation
   module Inspection
     def pretty_print(printer = nil)

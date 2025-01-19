@@ -4,7 +4,6 @@
   attributesfile = .gitattributes_global
   ignorecase = false
   mergeoptions = --no-edit
-	hooksPath = /Users/thierry/.githooks
 
 [user]
   name = Thierry Deo
@@ -95,3 +94,5 @@
   pruneExpire = 3 days ago
 [safe]
   directory =
+[blame]
+	ignoreRevsFile = .git-blame-ignore-revs
