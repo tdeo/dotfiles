@@ -379,7 +379,7 @@ The script should do this: \(ai.prompt)</string>
 			<key>Columns</key>
 			<integer>160</integer>
 			<key>Command</key>
-			<string>/bin/bash -il</string>
+			<string></string>
 			<key>Cursor Boost</key>
 			<real>0.0</real>
 			<key>Cursor Color</key>
@@ -498,7 +498,7 @@ The script should do this: \(ai.prompt)</string>
 				<real>0.0</real>
 			</dict>
 			<key>Load Shell Integration Automatically</key>
-			<true/>
+			<false/>
 			<key>Minimum Contrast</key>
 			<real>0.378662109375</real>
 			<key>Mouse Reporting</key>
