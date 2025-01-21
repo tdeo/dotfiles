@@ -1,0 +1,3 @@
+[submodule "Library/Application Support/Sublime Text"]
+	path = Library/Application Support/Sublime Text
+	url = git@github.com:tdeo/sublime_config.git
