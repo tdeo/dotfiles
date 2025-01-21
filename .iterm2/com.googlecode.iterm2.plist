@@ -497,6 +497,8 @@ The script should do this: \(ai.prompt)</string>
 				<key>Red Component</key>
 				<real>0.0</real>
 			</dict>
+			<key>Load Shell Integration Automatically</key>
+			<true/>
 			<key>Minimum Contrast</key>
 			<real>0.378662109375</real>
 			<key>Mouse Reporting</key>
