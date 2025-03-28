@@ -38,4 +38,4 @@ Brewfile*
 .tool-versions
 
 # rake completion
-.rake_tasks~
+.rake_tasks*

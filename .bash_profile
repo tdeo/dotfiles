@@ -4,19 +4,18 @@ if [ -f ~/.bash_completion ]; then . ~/.bash_completion; fi
 
 export BASH_SILENCE_DEPRECATION_WARNING=1
 export PATH="/usr/local/sbin:$PATH"
-PHP_AUTOCONF="/usr/local/bin/autoconf"
 
 if [ -f ~/.profile ]; then . ~/.profile; fi
 
 BREW_PREFIX=$(which brew &> /dev/null && brew --prefix || echo '')
 
-if [ -f $BREW_PREFIX/etc/bash_completion ]; then
-  . $BREW_PREFIX/etc/bash_completion
-fi
+# if [ -f $BREW_PREFIX/etc/bash_completion ]; then
+#   . $BREW_PREFIX/etc/bash_completion
+# fi
 
-if [ -f ~/.git-completion.bash ]; then
-  . ~/.git-completion.bash
-fi
+# if [ -f ~/.git-completion.bash ]; then
+#   . ~/.git-completion.bash
+# fi
 
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
@@ -50,8 +49,6 @@ test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shel
 export PATH="/Applications/Sublime Text.app/Contents/SharedSupport/bin:$PATH"
 
 which brew > /dev/null && [[ -r "$(brew --prefix)/etc/profile.d/bash_completion.sh" ]] && . "$(brew --prefix)/etc/profile.d/bash_completion.sh"
-[ -f /opt/homebrew/opt/asdf/libexec/asdf.sh ] && . /opt/homebrew/opt/asdf/libexec/asdf.sh
-[ -f /opt/homebrew/opt/asdf/etc/bash_completion.d/asdf.bash ] && . /opt/homebrew/opt/asdf/etc/bash_completion.d/asdf.bash
 source "$HOME/.rake.bash-completion"
 
 export GOPATH="$HOME/go/"

@@ -8,10 +8,11 @@
 [user]
   name = Thierry Deo
   email = thierry.deo@gmail.com
+	signingkey = /Users/thierry/.ssh/id_rsa
 
 [tag]
   sort = version:refname
-  gpgsign = true
+	gpgsign = true
 
 [alias]
   lol = log --graph --color --pretty=tformat:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s%x20%x1b[33m(%an)%x1b[0m" --topo-order --decorate  --boundary --branches
@@ -22,7 +23,7 @@
   rubocop-offenses = "!f() { git grep -IP --only-match 'rubocop:\\s*(disable|todo) .*' -- ':(exclude)**/archives/' | grep -Pzo '[A-Z][A-z]+/[A-Z][A-z]+' | tr '\\0' '\\n' | sort | uniq -c | sort; }; f"
   eslint-offenses = "!f() { git grep -IP --only-match 'eslint-(disable[\\w-]*) .*' -- '*.js' '*.ts' '*.jsx' '*.tsx' '*.cjs' '*.mjs' | cut -d':' -f3 | cut -d' ' -f2- | sed 's/-- .*//g' | sed 's|\\*/||g' | grep -Pzo '[@A-z/-]+' | tr '\\0' '\\n' | sort | uniq -c | sort; }; f"
   merge = merge --no-edit
-  cgrep = "!f() { git grep $1 -- ':!*.spec.tsx' ':!*.spec.ts' ':!*_spec.rb' ; }; f"
+  cgrep = "!f() { git grep $@ -- ':!*.spec.tsx' ':!*.spec.ts' ':!*_spec.rb' ; }; f"
 
 [push]
   default = current
@@ -96,3 +97,7 @@
   directory =
 [blame]
 	ignoreRevsFile = .git-blame-ignore-revs
+[gpg]
+	format = ssh
+[commit]
+	gpgsign = true

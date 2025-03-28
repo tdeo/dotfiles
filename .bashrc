@@ -133,6 +133,7 @@ if [ -f "/opt/homebrew/opt/kube-ps1/share/kube-ps1.sh" ]; then
     PS1='$(kube_ps1)'$PS1
     kubeoff
 fi
+export HOMEBREW_AUTO_UPDATE_SECS="$((7 * 24 * 60 * 60))"
 
 PATH="/usr/local/bin:$HOME/.git_scripts:$PATH";
 
@@ -209,5 +210,5 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-[ -f "$HOME/.asdf/asdf.sh" ] && . "$HOME/.asdf/asdf.sh"
-[ -f "$HOME/.asdf/completions/asdf.bash" ] && . "$HOME/.asdf/completions/asdf.bash"
+export ASDF_DATA_DIR=/Users/thierry/.asdf
+export PATH="$ASDF_DATA_DIR/shims:$PATH"

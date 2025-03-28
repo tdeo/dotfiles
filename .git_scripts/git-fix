@@ -2,6 +2,8 @@
 
 set -euo pipefail
 
+.pre-commit/update_code_owners.rb
+
 while ! git pcb; do
   read -p "Please fix the issues above and press enter to retry"
 done
