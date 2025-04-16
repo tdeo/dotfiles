@@ -4,7 +4,7 @@ setopt share_history
 
 autoload -Uz compinit && compinit
 setopt no_auto_menu
-
+setopt HIST_IGNORE_ALL_DUPS
 
 _rake () {
   week_num=$(date +%W)
@@ -22,7 +22,8 @@ _yarn() {
 compdef _yarn yarn
 
 PATH="$HOME/.git_scripts:$PATH:/usr/local/bin";
-export EDITOR="subl"
+export EDITOR="code"
+export PSQL_EDITOR='code -w'
 
 setopt PROMPT_SUBST
 git_branch() { git rev-parse --abbrev-ref HEAD 2> /dev/null; }
@@ -38,13 +39,18 @@ alias ls="ls --color=auto"
 alias ll="ls -alh"
 alias "git?"="git branch; git status"
 alias "."="source"
-alias ".."="cd ../; ls"
+alias subl="code"
 
-export PATH="$(brew --prefix)/opt/grep/libexec/gnubin:$PATH"
-export PATH="$(brew --prefix)/opt/findutils/libexec/gnubin:$PATH"
-export PATH="$(brew --prefix)/opt/gnu-sed/libexec/gnubin:$PATH"
-export PATH="$(brew --prefix)/opt/coreutils/libexec/gnubin:$PATH"
-export PATH=".git/safe/../../bin:$PATH"
+function .. ()  { cd ../"$1"; ls }
+function _.. ()  { 
+  compadd $(cd ../; ls -d */) 
+}
+compdef _.. ..
 
-export VERNIER_OUTPUT="$HOME/Downloads/foo.json"
-export NODE_OPTIONS="--max_old_space_size=16384"
+alias code='f() { touch "$@"; open -a "Cursor" "$@"; }; f'
+
+source $HOME/.environment_setup
+
+if [ -f $HOME/compta/jeancaisse/.env.local ]; then
+  source $HOME/compta/jeancaisse/.env.local
+fi

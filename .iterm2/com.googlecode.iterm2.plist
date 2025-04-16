@@ -338,6 +338,8 @@ The script should do this: \(ai.prompt)</string>
 			</dict>
 			<key>Background Image Is Tiled</key>
 			<false/>
+			<key>Background Image Location</key>
+			<string>/Users/thierry/Pictures/Wallpaper Pennylane-4.jpg</string>
 			<key>Background Image Mode</key>
 			<integer>2</integer>
 			<key>Badge Color</key>
@@ -354,7 +356,7 @@ The script should do this: \(ai.prompt)</string>
 				<real>1</real>
 			</dict>
 			<key>Blend</key>
-			<real>0.49012866462628857</real>
+			<real>0.14794686718103306</real>
 			<key>Blink Allowed</key>
 			<false/>
 			<key>Blinking Cursor</key>
@@ -379,7 +381,7 @@ The script should do this: \(ai.prompt)</string>
 			<key>Columns</key>
 			<integer>160</integer>
 			<key>Command</key>
-			<string></string>
+			<string>/bin/bash -il</string>
 			<key>Cursor Boost</key>
 			<real>0.0</real>
 			<key>Cursor Color</key>
@@ -429,12 +431,16 @@ The script should do this: \(ai.prompt)</string>
 			<false/>
 			<key>Foreground Color</key>
 			<dict>
+				<key>Alpha Component</key>
+				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.73333334922790527</real>
+				<real>0.97254901960784312</real>
+				<key>Color Space</key>
+				<string>P3</string>
 				<key>Green Component</key>
-				<real>0.73333334922790527</real>
+				<real>0.97254901960784312</real>
 				<key>Red Component</key>
-				<real>0.73333334922790527</real>
+				<real>0.97254901960784312</real>
 			</dict>
 			<key>Guid</key>
 			<string>FF01D43E-85A7-41B1-B4F5-DCC8AC2782D4</string>
@@ -543,6 +549,15 @@ The script should do this: \(ai.prompt)</string>
 				<key>Red Component</key>
 				<real>0.70980000495910645</real>
 			</dict>
+			<key>Semantic History</key>
+			<dict>
+				<key>action</key>
+				<string>editor</string>
+				<key>editor</key>
+				<string>com.todesktop.230313mzl4w4u92</string>
+				<key>text</key>
+				<string></string>
+			</dict>
 			<key>Send Code When Idle</key>
 			<false/>
 			<key>Send Terminal Generated Alerts</key>
@@ -596,6 +611,8 @@ The script should do this: \(ai.prompt)</string>
 	<key>OpenBookmark</key>
 	<false/>
 	<key>PMPrintingExpandedStateForPrint2</key>
+	<false/>
+	<key>PassOnControlClick</key>
 	<false/>
 	<key>PasteTabToStringTabStopSize</key>
 	<integer>4</integer>

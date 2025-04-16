@@ -135,13 +135,6 @@ if [ -f "/opt/homebrew/opt/kube-ps1/share/kube-ps1.sh" ]; then
 fi
 export HOMEBREW_AUTO_UPDATE_SECS="$((7 * 24 * 60 * 60))"
 
-PATH="/usr/local/bin:$HOME/.git_scripts:$PATH";
-
-if [[ "$OSTYPE" == "darwin"* ]]; then
-  # Use GNU utils from brew on MacOS
-  PATH="/opt/homebrew/opt/findutils/libexec/gnubin:/opt/homebrew/opt/coreutils/libexec/gnubin:/opt/homebrew/opt/gnu-sed/libexec/gnubin:/opt/homebrew/opt/grep/libexec/gnubin:/opt/homebrew/opt/mongodb@3.6/bin:/opt/homebrew/opt/mysql-client/bin:$PATH"
-fi
-
 # enable color support of ls and also add handy aliases
 if command -v dircolors &> /dev/null; then
   test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
@@ -159,8 +152,6 @@ alias ll='ls -alhF'
 alias la='ls -A'
 alias l='ls -CF'
 
-alias wkhtmltopdf="/usr/local/bin/wkhtmltopdf"
-
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
@@ -174,8 +165,8 @@ fi
 
 bind -x '"\C-k": printf "\ec"';
 
-export EDITOR='subl'
-export PSQL_EDITOR='subl -w'
+export EDITOR='code'
+export PSQL_EDITOR='code -w'
 
 #Compose key
 if [ -x setxkbmap ]; then
@@ -188,24 +179,13 @@ fi
 
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 
-if [ -f $HOME/scripts/pythonrc.py ]; then
-  export PYTHONSTARTUP="$HOME/scripts/pythonrc.py"
-fi
-
-export NODE_OPTIONS="--max_old_space_size=16384"
-export VERNIER_OUTPUT="$HOME/Downloads/foo.json"
+. .environment_setup
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/etc/bash_completion" ] && . "$NVM_DIR/etc/bash_completion"  # This loads nvm bash_completion
 
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
-
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash

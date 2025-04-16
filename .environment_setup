@@ -1,0 +1,8 @@
+export PATH="$(brew --prefix)/opt/grep/libexec/gnubin:$PATH"
+export PATH="$(brew --prefix)/opt/findutils/libexec/gnubin:$PATH"
+export PATH="$(brew --prefix)/opt/gnu-sed/libexec/gnubin:$PATH"
+export PATH="$(brew --prefix)/opt/coreutils/libexec/gnubin:$PATH"
+export PATH=".git/safe/../../bin:$PATH"
+
+export VERNIER_OUTPUT_DIR="$HOME/Downloads/vernier_profiles"
+export NODE_OPTIONS="--max_old_space_size=16384"

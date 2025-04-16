@@ -10,8 +10,7 @@ alias cv='if `which cv`; then watch -n0.02 cv -q; fi; if `which progress`; then 
 alias otp="watch -n0.1 $HOME/otp.sh"
 
 function .. ()  {
-  cd ../"$1"
-  ls
+  (cd .. ; ls -d */)
 }
 complete -F _.. ..
 

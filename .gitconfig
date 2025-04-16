@@ -1,5 +1,5 @@
 [core]
-  editor = "subl -w"
+  editor = "code -w"
   excludesfile = ~/.gitignore_global
   attributesfile = .gitattributes_global
   ignorecase = false
@@ -101,3 +101,5 @@
 	format = ssh
 [commit]
 	gpgsign = true
+[stash]
+	showPatch = true
