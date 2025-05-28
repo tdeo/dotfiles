@@ -1,0 +1,78 @@
+{
+    "window.commandCenter": true,
+    "explorer.confirmDelete": false,
+    "redhat.telemetry.enabled": false,
+    "workbench.colorTheme": "Monokai",
+    "gitlens.codeLens.enabled": false,
+    "gitlens.statusBar.enabled": false,
+    "editor.multiCursorModifier": "ctrlCmd",
+    "security.promptForLocalFileProtocolHandling": false,
+    "files.exclude": {
+        "**/docker_data": true,
+        "**/node_modules": true,
+        "spec/fixtures/vcr_cassettes/**": true
+    },
+    "git.openRepositoryInParentFolders": "never",
+    "editor.rulers": [
+        120,
+        80
+    ],
+    "editor.minimap.enabled": true,
+    "editor.minimap.showSlider": "always",
+    "editor.fontSize": 10.5,
+    "workbench.editor.highlightModifiedTabs": true,
+    "workbench.editor.focusRecentEditorAfterClose": false,
+    "githubPullRequests.pullBranch": "never",
+    "yaml.customTags": [
+        "!binary"
+    ],
+    "rainbow_csv.highlight_rows": true,
+    "files.associations": {
+        "CODEOWNERS": "codeowners"
+    },
+    "rubyLsp.enabledFeatures": {
+        "codeActions": true,
+        "diagnostics": true,
+        "documentHighlights": true,
+        "documentLink": true,
+        "documentSymbols": true,
+        "foldingRanges": true,
+        "formatting": true,
+        "hover": true,
+        "inlayHint": true,
+        "onTypeFormatting": true,
+        "selectionRanges": true,
+        "semanticHighlighting": true,
+        "completion": true,
+        "codeLens": false,
+        "definition": true,
+        "workspaceSymbol": true,
+        "signatureHelp": true,
+        "typeHierarchy": true
+    },
+    "testing.showCoverageInExplorer": false,
+    "gitblame.ignoreWhitespace": true,
+    "gitblame.inlineMessageEnabled": true,
+    "gitblame.inlineMessageMargin": 1,
+    "gitblame.inlineMessageFormat": "${author.name} (${time.ago}) · ${commit.summary}",
+    "gitblame.currentUserAlias": "You",
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "gitblame.inlineMessageNoCommit": "Not committed yet",
+    "indentRainbow.errorColor": "rgba(128,32,32,0.1)",
+    "indentRainbow.updateDelay": 30,
+    "indentRainbow.colors": [
+        "rgba(255,255,64,0.04)",
+        "rgba(127,255,127,0.04)",
+        "rgba(255,127,255,0.04)",
+        "rgba(79,236,236,0.04)"
+    ],
+    "cSpell.userWords": [
+        "Autogeneration",
+        "Autovacuum",
+        "codeowners",
+        "iban",
+        "Pennylane"
+    ],
+}

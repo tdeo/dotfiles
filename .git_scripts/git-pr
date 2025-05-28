@@ -5,4 +5,4 @@ set -euo pipefail
 current=`git symbolic-ref --short HEAD`
 main_branch=`git symbolic-ref --short refs/remotes/origin/HEAD`
 
-git dif $main_branch...${1:-HEAD} ${@:2}
+git dif --merge-base $main_branch ./

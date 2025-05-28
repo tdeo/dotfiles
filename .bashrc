@@ -179,7 +179,7 @@ fi
 
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 
-. .environment_setup
+source $HOME/.environment_setup
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm

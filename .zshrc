@@ -1,5 +1,6 @@
 LANG=en_US.UTF-8
 
+zmodload zsh/zprof
 setopt share_history
 
 autoload -Uz compinit && compinit
@@ -16,8 +17,9 @@ _rake () {
 }
 compdef _rake rake
 
-_yarn() {
-  compadd $(cat package.json  | jq -r '.scripts | keys | join(" ")')
+_yarn () {
+  cat package.json
+  compadd $(cat package.json  | jq -r '.scripts | keys | join("\n")')
 }
 compdef _yarn yarn
 
@@ -54,3 +56,11 @@ source $HOME/.environment_setup
 if [ -f $HOME/compta/jeancaisse/.env.local ]; then
   source $HOME/compta/jeancaisse/.env.local
 fi
+
+export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+
+# add CloudyPad CLI PATH
+export PATH=$PATH:/Users/thierry/.cloudypad/bin
+
+# Scaleway CLI autocomplete initialization.
+eval "$(scw autocomplete script shell=zsh)"

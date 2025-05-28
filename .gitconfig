@@ -4,6 +4,7 @@
   attributesfile = .gitattributes_global
   ignorecase = false
   mergeoptions = --no-edit
+	symlinks = true
 
 [user]
   name = Thierry Deo
@@ -17,7 +18,6 @@
 [alias]
   lol = log --graph --color --pretty=tformat:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s%x20%x1b[33m(%an)%x1b[0m" --topo-order --decorate  --boundary --branches
   tree = log --color --pretty=tformat:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s%x20%x1b[33m(%an)%x1b[0m"
- # pcb = "!f() { git add -N . && git merge-base master HEAD | xargs git diff --name-only | xargs -d '\n' pre-commit run $@ --files; }; f"
   modified-branch-files = "!f() { main_branch=`git symbolic-ref --short refs/remotes/origin/HEAD`; git diff --name-only $main_branch...HEAD; git diff --name-only HEAD; }; f"
   dif = diff --ignore-space-change
   rubocop-offenses = "!f() { git grep -IP --only-match 'rubocop:\\s*(disable|todo) .*' -- ':(exclude)**/archives/' | grep -Pzo '[A-Z][A-z]+/[A-Z][A-z]+' | tr '\\0' '\\n' | sort | uniq -c | sort; }; f"
