@@ -18,7 +18,6 @@ _rake () {
 compdef _rake rake
 
 _yarn () {
-  cat package.json
   compadd $(cat package.json  | jq -r '.scripts | keys | join("\n")')
 }
 compdef _yarn yarn
@@ -53,8 +52,8 @@ alias code='f() { touch "$@"; open -a "Cursor" "$@"; }; f'
 
 source $HOME/.environment_setup
 
-if [ -f $HOME/compta/jeancaisse/.env.local ]; then
-  source $HOME/compta/jeancaisse/.env.local
+if [ -f $HOME/compta/jeancaisse/docker.env ]; then
+  source $HOME/compta/jeancaisse/docker.env
 fi
 
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
@@ -63,4 +62,4 @@ export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 export PATH=$PATH:/Users/thierry/.cloudypad/bin
 
 # Scaleway CLI autocomplete initialization.
-eval "$(scw autocomplete script shell=zsh)"
+# eval "$(scw autocomplete script shell=zsh)"

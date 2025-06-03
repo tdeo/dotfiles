@@ -2,7 +2,7 @@
   editor = "code -w"
   excludesfile = ~/.gitignore_global
   attributesfile = .gitattributes_global
-  ignorecase = false
+	ignorecase = false
   mergeoptions = --no-edit
 	symlinks = true
 
