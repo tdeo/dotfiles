@@ -3,6 +3,7 @@ const HOSTS = {
   GOOGLE_MEET: 'meet.google.com',
   GOOGLE_CLOUD_CONSOLE: 'console.cloud.google.com',
   GOOGLE_PHOTOS: 'photos.google.com',
+  GOOGLE_GROUPS: 'groups.google.com',
 }
 
 function fixLinks() {
@@ -82,9 +83,13 @@ if (window.location.host === HOSTS.GOOGLE_CLOUD_CONSOLE) {
   addSearchParam('authuser', 1)
 }
 
+if (window.Location.host === HOSTS.GOOGLE_GROUPS) {
+  addSearchParam('authuser', 1)
+}
+
 if (
   window.location.host === HOSTS.GOOGLE_PHOTOS &&
   !window.location.pathname.startsWith('/u/')
 ) {
-  addSearchParam('authuser', 3)
+  addSearchParam('authuser', 2)
 }

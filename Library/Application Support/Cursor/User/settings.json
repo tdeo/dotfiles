@@ -28,7 +28,8 @@
     ],
     "rainbow_csv.highlight_rows": true,
     "files.associations": {
-        "CODEOWNERS": "codeowners"
+        "CODEOWNERS": "codeowners",
+        "*.mdx": "markdown"
     },
     "rubyLsp.enabledFeatures": {
         "codeActions": true,
@@ -69,10 +70,28 @@
         "rgba(79,236,236,0.04)"
     ],
     "cSpell.userWords": [
+        "autocorrect",
         "Autogeneration",
         "Autovacuum",
         "codeowners",
         "iban",
-        "Pennylane"
+        "jeancaisse",
+        "jeangrange",
+        "kwargs",
+        "managees",
+        "Pennylane",
+        "rubocop"
     ],
+    "editor.scrollbar.verticalScrollbarSize": 8,
+    "editor.scrollbar.horizontalScrollbarSize": 8,
+    "trailing-spaces.deleteModifiedLinesOnly": true,
+    "trailing-spaces.trimOnSave": true,
+    "git.autofetch": true,
+    "[plaintext]": {
+        "editor.unicodeHighlight.ambiguousCharacters": false,
+        "editor.unicodeHighlight.invisibleCharacters": false
+    },
+    "biome.suggestInstallingGlobally": false,
+    "sqlfluff.dialect": "postgres",
+    "sqlfluff.format.arguments": [],
 }

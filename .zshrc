@@ -48,7 +48,7 @@ function _.. ()  {
 }
 compdef _.. ..
 
-alias code='f() { touch "$@"; open -a "Cursor" "$@"; }; f'
+alias code='f() { mkdir -p "$(dirname "$@")"; touch "$@"; open -a "Cursor" "$@"; }; f'
 
 source $HOME/.environment_setup
 

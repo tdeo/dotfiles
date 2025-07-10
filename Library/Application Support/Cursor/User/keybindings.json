@@ -24,5 +24,10 @@
         "key": "cmd+w",
         "command": "-workbench.action.closeWindow",
         "when": "!editorIsOpen && !multipleEditorGroups"
+    },
+    {
+        "key": "cmd+j",
+        "command": "-editor.action.joinLines",
+        "when": "editorTextFocus"
     }
 ]
