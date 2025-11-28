@@ -8,7 +8,7 @@
 
 [user]
   name = Thierry Deo
-  email = thierry.deo@gmail.com
+	email = thierry@pennylane.com
 	signingkey = /Users/thierry/.ssh/id_rsa
 
 [tag]
@@ -24,6 +24,7 @@
   eslint-offenses = "!f() { git grep -IP --only-match 'eslint-(disable[\\w-]*) .*' -- '*.js' '*.ts' '*.jsx' '*.tsx' '*.cjs' '*.mjs' | cut -d':' -f3 | cut -d' ' -f2- | sed 's/-- .*//g' | sed 's|\\*/||g' | grep -Pzo '[@A-z/-]+' | tr '\\0' '\\n' | sort | uniq -c | sort; }; f"
   merge = merge --no-edit
   cgrep = "!f() { git grep $@ -- ':!*.spec.tsx' ':!*.spec.ts' ':!*_spec.rb' ; }; f"
+  amend = commit -a --amend --no-edit
 
 [push]
   default = current
@@ -103,3 +104,5 @@
 	gpgsign = true
 [stash]
 	showPatch = true
+[init]
+	defaultBranch = main

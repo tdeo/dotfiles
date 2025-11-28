@@ -15,7 +15,7 @@ function fixLinks() {
     document.querySelectorAll('a').forEach(function (a) {
       if (a.innerText === 'Review requests') {
         a.href =
-          'https://github.com/pulls?q=is%3Aopen+is%3Apr+user-review-requested%3Atdeo+archived%3Afalse'
+          'https://github.com/pulls?q=is%3Aopen+is%3Apr+user-review-requested%3A@me+archived%3Afalse'
       } else if (a.innerText === 'Created') {
         a.href = 'https://github.com/pulls'
       }
@@ -83,13 +83,14 @@ if (window.location.host === HOSTS.GOOGLE_CLOUD_CONSOLE) {
   addSearchParam('authuser', 1)
 }
 
-if (window.Location.host === HOSTS.GOOGLE_GROUPS) {
+if (window.location.host === HOSTS.GOOGLE_GROUPS &&
+  !window.location.pathname.startsWith('/u/')) {
   addSearchParam('authuser', 1)
 }
 
-if (
-  window.location.host === HOSTS.GOOGLE_PHOTOS &&
-  !window.location.pathname.startsWith('/u/')
-) {
-  addSearchParam('authuser', 2)
-}
+// if (
+//   window.location.host === HOSTS.GOOGLE_PHOTOS &&
+//   !window.location.pathname.startsWith('/u/')
+// ) {
+//   addSearchParam('authuser', 2)
+// }

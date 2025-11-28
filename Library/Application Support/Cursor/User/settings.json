@@ -72,6 +72,7 @@
     "cSpell.userWords": [
         "autocorrect",
         "Autogeneration",
+        "autorun",
         "Autovacuum",
         "codeowners",
         "iban",
@@ -80,7 +81,13 @@
         "kwargs",
         "managees",
         "Pennylane",
-        "rubocop"
+        "ruboclean",
+        "rubocop",
+        "Sepa",
+        "thirdparties",
+        "thirdparty",
+        "timesheet",
+        "timesheets"
     ],
     "editor.scrollbar.verticalScrollbarSize": 8,
     "editor.scrollbar.horizontalScrollbarSize": 8,
@@ -94,4 +101,15 @@
     "biome.suggestInstallingGlobally": false,
     "sqlfluff.dialect": "postgres",
     "sqlfluff.format.arguments": [],
+    "editor.codeActionsOnSave": {},
+    "prettier.embeddedLanguageFormatting": "off",
+    "explorer.excludeGitIgnore": true,
+    "typescript.experimental.useTsgo": true,
+    "rubyLsp.addonSettings": {
+        "Ruby LSP Rails": {
+            "enablePendingMigrationsPrompt": false
+        },
+    },
+    "files.insertFinalNewline": true,
+    "editor.formatOnSave": true,
 }

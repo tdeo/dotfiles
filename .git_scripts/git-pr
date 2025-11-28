@@ -2,7 +2,12 @@
 
 set -euo pipefail
 
+paths=( "${@:2}" )
+if [[ ${#paths[@]} -eq 0 ]]; then
+  paths+=( "./" )
+fi
+
 current=`git symbolic-ref --short HEAD`
 main_branch=`git symbolic-ref --short refs/remotes/origin/HEAD`
 
-git dif --merge-base $main_branch ./
+git dif --merge-base $main_branch  -- "$paths"

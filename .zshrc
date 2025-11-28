@@ -8,12 +8,19 @@ setopt no_auto_menu
 setopt HIST_IGNORE_ALL_DUPS
 
 _rake () {
-  week_num=$(date +%W)
-  if [[ ! -f .rake_tasks_$week_num~ ]]; then
-    rm .rake_tasks* 2>/dev/null
-    rake --silent --all --tasks | cut -d " " -f 2 > .rake_tasks_$week_num~
+  ((leeway=60 * 60 * 12))
+  ((updated_at=$(date +%s) - $leeway))
+  current=$(date +%s)
+  [[ -f .rake_tasks_updated_at~ ]] && updated_at=$(cat .rake_tasks_updated_at~)
+
+  line_count=$(cat .rake_tasks~ | wc -l)
+  if [[ $updated_at -le (( $current - $leeway )) ]] || [[ $line_count -lt 10 ]]; then
+    setopt local_options no_notify no_monitor
+    (echo $current > .rake_tasks_updated_at~ &&
+      rake --silent --all --tasks | cut -d " " -f 2 > .rake_tasks_tmp~ &&
+      mv .rake_tasks_tmp~ .rake_tasks~) &
   fi
-  compadd $(cat .rake_tasks_$week_num~)
+  compadd $(cat .rake_tasks~)
 }
 compdef _rake rake
 
@@ -36,6 +43,8 @@ $(git_sha)%f \
 %B%F{cyan}%*%f \
 %#%b '
 
+export HOMEBREW_AUTO_UPDATE_SECS="$((7 * 24 * 60 * 60))"
+
 alias ls="ls --color=auto"
 alias ll="ls -alh"
 alias "git?"="git branch; git status"
@@ -51,6 +60,12 @@ compdef _.. ..
 alias code='f() { mkdir -p "$(dirname "$@")"; touch "$@"; open -a "Cursor" "$@"; }; f'
 
 source $HOME/.environment_setup
+
+if [ -f "/opt/homebrew/opt/kube-ps1/share/kube-ps1.sh" ]; then
+    source "/opt/homebrew/opt/kube-ps1/share/kube-ps1.sh"
+    PS1='$(kube_ps1)'$PS1
+    kubeoff
+fi
 
 if [ -f $HOME/compta/jeancaisse/docker.env ]; then
   source $HOME/compta/jeancaisse/docker.env

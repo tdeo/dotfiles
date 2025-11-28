@@ -29,5 +29,17 @@
         "key": "cmd+j",
         "command": "-editor.action.joinLines",
         "when": "editorTextFocus"
+    },
+    {
+        "key": "shift+cmd+l",
+        "command": "-composer.newAgentChat"
+    },
+    {
+        "key": "shift+cmd+s",
+        "command": "workbench.action.files.saveWithoutFormatting"
+    },
+    {
+        "key": "cmd+r s",
+        "command": "-workbench.action.files.saveWithoutFormatting"
     }
 ]

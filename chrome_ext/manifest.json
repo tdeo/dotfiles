@@ -11,7 +11,8 @@
         "https://github.com/*",
         "https://meet.google.com/*",
         "https://console.cloud.google.com/*",
-        "https://photos.google.com/*"
+        "https://photos.google.com/*",
+        "https://groups.google.com/*"
       ],
       "js": ["entrypoint.js"]
     }
