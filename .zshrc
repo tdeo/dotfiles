@@ -5,7 +5,25 @@ setopt share_history
 
 autoload -Uz compinit && compinit
 setopt no_auto_menu
-setopt HIST_IGNORE_ALL_DUPS
+
+HISTFILE="$HOME/.zsh_history"
+HISTSIZE=10000000
+SAVEHIST=10000000
+
+setopt BANG_HIST                 # Treat the '!' character specially during expansion.
+setopt EXTENDED_HISTORY          # Write the history file in the ":start:elapsed;command" format.
+setopt INC_APPEND_HISTORY        # Write to the history file immediately, not when the shell exits.
+setopt SHARE_HISTORY             # Share history between all sessions.
+setopt HIST_EXPIRE_DUPS_FIRST    # Expire duplicate entries first when trimming history.
+setopt HIST_IGNORE_DUPS          # Don't record an entry that was just recorded again.
+setopt HIST_IGNORE_ALL_DUPS      # Delete old recorded entry if new entry is a duplicate.
+setopt HIST_FIND_NO_DUPS         # Do not display a line previously found.
+setopt HIST_IGNORE_SPACE         # Don't record an entry starting with a space.
+setopt HIST_SAVE_NO_DUPS         # Don't write duplicate entries in the history file.
+setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording entry.
+setopt HIST_VERIFY               # Don't execute immediately upon history expansion.
+setopt HIST_BEEP                 # Beep when accessing nonexistent history.
+
 
 _rake () {
   ((leeway=60 * 60 * 12))
@@ -20,7 +38,9 @@ _rake () {
       rake --silent --all --tasks | cut -d " " -f 2 > .rake_tasks_tmp~ &&
       mv .rake_tasks_tmp~ .rake_tasks~) &
   fi
-  compadd $(cat .rake_tasks~)
+  if [[ -f .rake_tasks~ ]]; then
+    compadd $(cat .rake_tasks~)
+  fi
 }
 compdef _rake rake
 
@@ -50,6 +70,7 @@ alias ll="ls -alh"
 alias "git?"="git branch; git status"
 alias "."="source"
 alias subl="code"
+alias groot="cd $(git root)"
 
 function .. ()  { cd ../"$1"; ls }
 function _.. ()  { 
@@ -57,7 +78,7 @@ function _.. ()  {
 }
 compdef _.. ..
 
-alias code='f() { mkdir -p "$(dirname "$@")"; touch "$@"; open -a "Cursor" "$@"; }; f'
+alias code='f() { dirname "$@" | xargs mkdir -p; touch "$@"; open -a "Cursor" "$@"; }; f'
 
 source $HOME/.environment_setup
 

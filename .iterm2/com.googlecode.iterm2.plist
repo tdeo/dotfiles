@@ -24,10 +24,14 @@
 	<integer>128000</integer>
 	<key>AitermURL</key>
 	<string>https://api.openai.com/v1/responses</string>
+	<key>BracketedPasteMode</key>
+	<true/>
 	<key>ClickToSelectCommand</key>
 	<false/>
 	<key>Default Bookmark Guid</key>
 	<string>A914B079-DB57-4FF0-A9B4-0B852BEFE1B3</string>
+	<key>EscapeShellCharsWithBackslash</key>
+	<false/>
 	<key>HapticFeedbackForEsc</key>
 	<false/>
 	<key>HideTab</key>
@@ -1198,6 +1202,12 @@
 			<string>/Users/thierry</string>
 		</dict>
 	</array>
+	<key>PasteSpecialRegex</key>
+	<string></string>
+	<key>PasteSpecialSubstitution</key>
+	<string></string>
+	<key>PasteSpecialUseRegexSubstitution</key>
+	<false/>
 	<key>PointerActions</key>
 	<dict>
 		<key>Button,1,1,,</key>
@@ -1235,6 +1245,12 @@
 	<false/>
 	<key>Print In Black And White</key>
 	<true/>
+	<key>QuickPasteBytesPerCall</key>
+	<integer>500</integer>
+	<key>QuickPasteDelayBetweenCalls</key>
+	<real>0.05000000074505806</real>
+	<key>SlowPasteBytesPerCall</key>
+	<integer>50</integer>
 	<key>SoundForEsc</key>
 	<false/>
 	<key>StretchTabsToFillBar</key>

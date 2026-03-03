@@ -11,10 +11,9 @@ function find_git_subdirs() {
 
 cur_dir=`pwd`;
 for d in `find_git_subdirs`; do
-    cd $cur_dir
     cd $d;
     dir=${d#"$cur_dir/"}
-    branch=$(git rev-parse --abbrev-ref HEAD 2> /dev/null)
+    branch=$(git rev-parse --abbrev-ref HEAD 2> /dev/null) || continue;
     printf '********************  %-10s  ********************  %-40s\n' "$branch" "$dir"  1>&2;
     if [ $# -eq 0 ]; then
         LANG=en_US git diff-index --quiet HEAD -- && \
@@ -25,7 +24,7 @@ for d in `find_git_subdirs`; do
         LANG=en_US git branch && LANG=en_US git status;
     else
         if [[ $1 == git && $2 == grep ]]; then
-            eval "$1 $2 --color=always ${@:3}" | sed "s|^|$(basename $d)/|g";
+            git grep --color=always "${@:3}" | sed "s|^|$(basename $d)/|g";
         else
             eval "$@";
         fi

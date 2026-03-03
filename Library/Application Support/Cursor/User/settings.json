@@ -70,8 +70,10 @@
         "rgba(79,236,236,0.04)"
     ],
     "cSpell.userWords": [
+        "approvable",
         "autocorrect",
         "Autogeneration",
+        "autoloading",
         "autorun",
         "Autovacuum",
         "codeowners",
@@ -112,4 +114,14 @@
     },
     "files.insertFinalNewline": true,
     "editor.formatOnSave": true,
+    "sqlfluff.excludeRules": [
+        "RF02"
+    ],
+    "yaml.format.singleQuote": true,
+    "cSpell.enabledNotifications": {
+        "Lines too Long": false,
+        "Maximum Word Length Exceeded": false,
+        "Average Word Length too Long": false
+    },
+    "yaml.format.enable": false,
 }
