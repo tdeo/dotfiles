@@ -69,28 +69,7 @@
         "rgba(255,127,255,0.04)",
         "rgba(79,236,236,0.04)"
     ],
-    "cSpell.userWords": [
-        "approvable",
-        "autocorrect",
-        "Autogeneration",
-        "autoloading",
-        "autorun",
-        "Autovacuum",
-        "codeowners",
-        "iban",
-        "jeancaisse",
-        "jeangrange",
-        "kwargs",
-        "managees",
-        "Pennylane",
-        "ruboclean",
-        "rubocop",
-        "Sepa",
-        "thirdparties",
-        "thirdparty",
-        "timesheet",
-        "timesheets"
-    ],
+    "cSpell.userWords": [],
     "editor.scrollbar.verticalScrollbarSize": 8,
     "editor.scrollbar.horizontalScrollbarSize": 8,
     "trailing-spaces.deleteModifiedLinesOnly": true,
@@ -124,4 +103,6 @@
         "Average Word Length too Long": false
     },
     "yaml.format.enable": false,
+    "editor.tabSize": 2,
+    "ruby.packwerk.showWarnings": true,
 }

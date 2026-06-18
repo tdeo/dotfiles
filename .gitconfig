@@ -84,6 +84,7 @@
 
 [diff]
   algorithm = minimal
+	renameLimit = 10000
 
 [diff "xls"]
   binary = true
