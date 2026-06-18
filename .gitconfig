@@ -9,7 +9,7 @@
 [user]
   name = Thierry Deo
 	email = thierry@pennylane.com
-	signingkey = /Users/thierry/.ssh/id_rsa
+	signingkey = /Users/thierry.deo/.ssh/id_rsa
 
 [tag]
   sort = version:refname
@@ -85,6 +85,7 @@
 
 [diff]
   algorithm = minimal
+	renameLimit = 10000
 
 [diff "xls"]
   binary = true

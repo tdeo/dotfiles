@@ -1,0 +1,17 @@
+#! /bin/bash
+
+set -euo pipefail
+
+head=${1:-HEAD}
+base=$(git main-branch)
+base_commit=$(git merge-base "$head" "$base")
+
+merge_commits=$(git rev-list "$base".."$head" --min-parents=2)
+for merge_commit in $merge_commits; do
+  if git merge-base --is-ancestor "$merge_commit^2" "$base"; then
+    base_commit=$(git rev-list -1 "$merge_commit^2")
+    break
+  fi
+done
+
+echo "$base_commit"
