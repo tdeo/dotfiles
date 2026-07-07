@@ -8,7 +8,7 @@ const HOSTS = {
 
 function fixLinks() {
   document.querySelectorAll('a').forEach(function (a) {
-    a.href = a.href.replace(/\/files(\/[^\?/]*)?$/, '/files?w=1')
+    a.href = a.href.replace(/\/changes(\/[^\?/]*)?$/, '/changes?w=1')
   })
 
   if (window.location.href.startsWith('https://github.com/pulls')) {
@@ -66,7 +66,7 @@ const addSearchParam = (key, value) => {
 }
 
 if (window.location.host === HOSTS.GITHUB) {
-  if (window.location.pathname.match(/^\/pull\/\d+\/files/)) {
+  if (window.location.pathname.match(/\/pull\/\d+\/(files|changes)/)) {
     addSearchParam('w', 1)
   }
   if (window.location.pathname.match(/\/pull\/\d+$/)) {

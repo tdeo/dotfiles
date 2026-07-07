@@ -17,9 +17,9 @@
 	<key>AIVectorStore</key>
 	<integer>0</integer>
 	<key>AiMaxTokens</key>
-	<integer>400000</integer>
+	<integer>1050000</integer>
 	<key>AiModel</key>
-	<string>gpt-5.1</string>
+	<string>gpt-5.5</string>
 	<key>AiResponseMaxTokens</key>
 	<integer>128000</integer>
 	<key>AitermURL</key>
@@ -711,7 +711,7 @@
 				<real>0.97999999999999998</real>
 			</dict>
 			<key>Background Image Location</key>
-			<string>/Users/thierry/Pictures/Terminal background.jpg</string>
+			<string>/Users/thierry.deo/Pictures/Terminal background.jpg</string>
 			<key>Background Image Mode</key>
 			<integer>2</integer>
 			<key>Badge Color</key>
@@ -1249,6 +1249,8 @@
 	<integer>500</integer>
 	<key>QuickPasteDelayBetweenCalls</key>
 	<real>0.05000000074505806</real>
+	<key>ShowFullScreenTabBar</key>
+	<true/>
 	<key>SlowPasteBytesPerCall</key>
 	<integer>50</integer>
 	<key>SoundForEsc</key>

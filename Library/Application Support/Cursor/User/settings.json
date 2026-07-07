@@ -124,4 +124,10 @@
         "Average Word Length too Long": false
     },
     "yaml.format.enable": false,
+    "editor.tabSize": 2,
+    "vs-kubernetes": {
+        "vs-kubernetes.crd-code-completion": "enabled"
+    },
+    "window.autoDetectColorScheme": false,
+    "rubyLsp.formatter": "rubocop",
 }

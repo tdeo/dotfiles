@@ -56,3 +56,5 @@ export GOBIN="$GOPATH/bin"
 export PATH="$PATH:$GOPATH:$GOBIN"
 
 export PATH=".git/safe/../../bin:$PATH"
+
+. "/opt/homebrew/opt/asdf/libexec/asdf.sh"

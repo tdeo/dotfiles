@@ -192,3 +192,5 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 export ASDF_DATA_DIR=/Users/thierry/.asdf
 export PATH="$ASDF_DATA_DIR/shims:$PATH"
+
+if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init bash)"; fi

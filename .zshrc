@@ -49,7 +49,7 @@ _yarn () {
 }
 compdef _yarn yarn
 
-PATH="$HOME/.git_scripts:$PATH:/usr/local/bin";
+PATH="$HOME/.git_scripts:$PATH:/usr/local/bin:$GOPATH";
 export EDITOR="code"
 export PSQL_EDITOR='code -w'
 
@@ -99,3 +99,9 @@ export PATH=$PATH:/Users/thierry/.cloudypad/bin
 
 # Scaleway CLI autocomplete initialization.
 # eval "$(scw autocomplete script shell=zsh)"
+
+if [ -f $HOME/compta/.env ]; then
+  source $HOME/compta/.env
+fi
+
+if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)"; fi
