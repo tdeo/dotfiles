@@ -43,6 +43,11 @@
         "command": "-workbench.action.files.saveWithoutFormatting"
     },
     {
+        "key": "alt+cmd+s",
+        "command": "workbench.action.toggleUnifiedSidebarFromKeyboard",
+        "when": "!isAuxiliaryWindowFocusedContext"
+    },
+    {
         "key": "shift+cmd+l",
         "command": "editor.action.insertCursorAtEndOfEachLineSelected",
         "when": "editorTextFocus"

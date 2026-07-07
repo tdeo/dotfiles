@@ -110,4 +110,9 @@
     "window.autoDetectColorScheme": false,
     "rubyLsp.formatter": "rubocop",
     "ruby.packwerk.showWarnings": true,
+    "vs-kubernetes": {
+        "vs-kubernetes.crd-code-completion": "enabled"
+    },
+    "window.autoDetectColorScheme": false,
+    "rubyLsp.formatter": "rubocop",
 }
