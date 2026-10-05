@@ -39,3 +39,5 @@ Brewfile*
 
 # rake completion
 .rake_tasks*
+
+**/.claude/settings.local.json

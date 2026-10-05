@@ -69,7 +69,8 @@ alias ls="ls --color=auto"
 alias ll="ls -alh"
 alias "git?"="git branch; git status"
 alias "."="source"
-alias subl="code"
+# alias subl="code"
+alias subl="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
 alias groot="cd $(git root)"
 
 function .. ()  { cd ../"$1"; ls }

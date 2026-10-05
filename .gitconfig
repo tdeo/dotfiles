@@ -29,6 +29,7 @@
   main = "!git checkout $(git main-branch | cut -d'/' -f2)"
   root = "rev-parse --show-toplevel"
 	prune-branches = "!f() { git branch -vv | grep \": gone\\]\" | cut -d \" \" -f 3 | xargs git branch -D 2>/dev/null || true; }; f"
+  finish-merge = commit -a --no-edit
 
 [push]
   default = current
