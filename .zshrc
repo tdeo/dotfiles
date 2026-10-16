@@ -70,8 +70,9 @@ alias ll="ls -alh"
 alias "git?"="git branch; git status"
 alias "."="source"
 # alias subl="code"
-alias subl="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
+# alias subl="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
 alias groot="cd $(git root)"
+alias shake_simulator="xcrun simctl spawn booted notifyutil -p com.apple.UIKit.SimulatorShake"
 
 function .. ()  { cd ../"$1"; ls }
 function _.. ()  { 
@@ -79,7 +80,7 @@ function _.. ()  {
 }
 compdef _.. ..
 
-alias code='f() { dirname "$@" | xargs mkdir -p; touch "$@"; open -a "Cursor" "$@"; }; f'
+# alias code='f() { dirname "$@" | xargs mkdir -p; touch "$@"; open -a "Cursor" "$@"; }; f'
 
 source $HOME/.environment_setup
 

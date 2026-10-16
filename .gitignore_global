@@ -41,3 +41,4 @@ Brewfile*
 .rake_tasks*
 
 **/.claude/settings.local.json
+.claude/worktrees/
